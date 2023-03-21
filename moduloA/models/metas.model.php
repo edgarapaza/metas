@@ -14,52 +14,28 @@ class Metas
 	public function Guardar($nombre_meta,$programado,$unidad_medida)
 	{
 		$sql = "INSERT INTO metas VALUES (null,'$nombre_meta','$programado','$unidad_medida');";
-
-		
-		if(!$this->conn->query($sql)){
-			echo "Error: " . mysqli_error($this->conn);
-			exit();
-		}
-		return true;
-		$this->conn->close();
+		$this->conn->ConsultaSin($sql);
 	}
 
 	public function Modificar($idmeta, $nombre_meta,$programado,$unidad_medida)
 	{
 		
-		$sql = "UPDATE metas SET nombre_meta = '$nombre_meta', programado = '$programado', unidad_medida='$unidad_medida' WHERE id_metas = $idmeta;";
-
-		if(!$this->conn->query($sql)){
-			echo "Error: " . mysqli_error($this->conn);
-			exit();
-		}
-
-		$this->conn->close();
+		$sql = "UPDATE metas SET nombre_meta = '$nombre_meta', programado = '$programado', unidad_medida='$unidad_medida' WHERE id_metas = $idmeta";
+		$this->conn->ConsultaSin($sql);
 	}
 	public function Consultar()
 	{
-		$sql = "SELECT id_metas, nombre_meta, programado, unidad_medida FROM metas;";
-		
-		$response = $this->conn->query($sql);
-
-		return $response;
-		$this->conn->close();
+		$sql = "SELECT id_metas, nombre_meta, programado, unidad_medida FROM metas";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
 	}
 
 	public function MostrarMetaOficina($idmeta)
 	{
 		
 		$sql = "SELECT nombre_meta, programado, unidad_medida FROM metas WHERE id_metas = $idmeta;";
-		
-		if(!$response = $this->conn->query($sql))
-		{
-			echo "Error: ". mysqli_error($this->conn);
-			exit();
-		}
-		$data = $response->fetch_array(MYSQLI_ASSOC);
-
+		$data = $this->conn->ConsultaArray($sql);
 		return $data;
-		$this->conn->close();
 	}
 
 

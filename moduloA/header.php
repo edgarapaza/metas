@@ -25,18 +25,17 @@ if(isset($_SESSION['admin']))
   <nav>
       <ul>Institucional
             <li><a href="institucion.php">Agregar Institucion</a></li>
-            <li><a href="gerencia.php">Agregar Gerencia</a></li>*
+            <li><a href="gerencia.php">Agregar Gerencia</a></li>
             <li><a href="subgerencia.php">Agregar Sub Gerencia</a></li>
             <li><a href="oficinas.php">Agregar Oficinas</a></li>
             <li><a href="areas.php">Agregar Areas</a></li>
-
     </ul>
 
     <ul>Personal
         <li><a href="personal.php">Agregar Personal</a></li>
     </ul>
     <ul>Reportes
-        <li><a href="reportGerencia.php">Por Gerencias</a></li>*
+        <li><a href="reportGerencia.php">Por Gerencias</a></li>
         <li><a href="reportSubGerencia.php">Por Sub Gerencias</a></li>
         <li><a href="reportOficina.php">Por Oficinas</a></li>
         <li><a href="reportPersona.php">Por Persona</a></li>

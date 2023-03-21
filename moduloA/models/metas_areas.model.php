@@ -14,12 +14,8 @@ class MetasAreas
 	public function Guardar($id_meta,$id_area,$fecha_reporte,$cantidad_avance)
 	{
 		$sql = "INSERT INTO metas_areas VALUES (null,'$id_meta',id_area','$fecha_reporte','$cantidad_avance')";
+		$this->conn->ConsultaSin($sql);
 
-		if(!$this->conn->query($sql)){
-			echo "Error: " . mysqli_error();
-			exit();
-		}
-		return true;
 	}
 
 	public function Modificar()

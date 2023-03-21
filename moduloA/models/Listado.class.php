@@ -3,7 +3,7 @@ require_once("Conexion.php");
 	class Listado
 	{
 
-		private $mysqli;
+		private $conn;
 
 		function __construct()
 		{
@@ -13,47 +13,44 @@ require_once("Conexion.php");
 
 		function Personal(){
 			$sql = "SELECT id_personal, CONCAT(nombre,' ', paterno,' ',materno) AS personal FROM personal;";
-			$data = $this->mysqli->query($sql);
+			$data = $this->conn->ConsultaCon($sql);
 			return $data;
 		}
 
 		function Institucion(){
-			$sql="SELECT id_institucion, nombre FROM institucion;";
-			$data = $this->mysqli->query($sql);
+			$sql="SELECT id, nombre FROM institucion;";
+			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
 
 		function Oficina(){
 			$sql="SELECT id_oficina, oficina FROM oficinas;";
-			$data = $this->mysqli->query($sql);
+			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
 
 		function Cargo(){
 			$sql="SELECT id_cargo, cargo FROM cargos;";
-			$data = $this->mysqli->query($sql);
+			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
 
 		function PersonalUnico($codigo){
 			$sql = "SELECT CONCAT(nombre,' ', paterno,' ',materno) AS personal FROM personal WHERE id_personal= $codigo";
-			$data = $this->mysqli->query($sql);
-			$dato = $data->fetch_assoc();
+			$dato = $this->conn->ConsultaArray($sql);
 			return $dato;
 		}
 
 		function OficinaUnico($codigo){
 			$sql="SELECT oficina FROM oficinas WHERE id_oficina= $codigo";
-			$data = $this->mysqli->query($sql);
-			$dato = $data->fetch_assoc();
-			return $dato;
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
 		}
 
 		function CargoUnico($codigo){
 			$sql="SELECT cargo FROM cargos WHERE id_cargo = $codigo";
-			$data = $this->mysqli->query($sql);
-			$dato = $data->fetch_assoc();
-			return $dato;
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
 		}
 	}
 

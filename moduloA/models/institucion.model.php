@@ -32,6 +32,15 @@ class Institucion
 		return $response;
 	}
 
+	public function MostrarInstitucion()
+	{
+		$sql = "SELECT id, nombre_inst,direccion,telefono,email FROM institucion";
+
+		$response = $this->conn->ConsultaArray($sql);
+
+		return $response;
+	}
+
 	public function CrearOficinas()
 	{
 		

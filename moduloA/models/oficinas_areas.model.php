@@ -13,12 +13,7 @@ class Oficinas_Areas
 	public function Guardar($id_oficinas,$id_areas)
 	{
 		$sql = "INSERT INTO oficinas_areas VALUES (null,'$id_oficinas','$id_areas')";
-
-		if(!$this->conn->query($sql)){
-			echo "Error: " . mysqli_error();
-			exit();
-		}
-		return true;
+		$this->conn->ConsultaSin($sql);
 	}
 
 	public function Modificar()
@@ -29,9 +24,7 @@ class Oficinas_Areas
 	public function Consultar()
 	{
 		$sql = "SELECT id_ofiarea,id_oficinas,id_areas FROM oficinas_areas; ";
-
-		$response = $this->conn->query($sql);
-
+		$response = $this->conn->ConsultaCon($sql);
 		return $response;
 	}
 
