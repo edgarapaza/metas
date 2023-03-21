@@ -8,7 +8,7 @@ $RUC = trim(strtoupper($_POST['RUC']));
 $email = trim(strtolower($_POST['Email']));
 $p_web = trim(strtolower($_POST['Pagina_web']));
 $fecha_creacion_archivo = trim($_POST['f_creacion_institucion']);
-$id_metas = trim($_POST['idmetas']);
+$id_metas = 1;
 $n_resolucion = trim(strtoupper($_POST['N_resolucion']));
 
 $inst = new Institucion();
