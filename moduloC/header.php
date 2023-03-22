@@ -57,7 +57,22 @@ if(isset($_SESSION['personal']))
 
           </li>
                 
-       
+          <li class="nav-item  ">
+            
+            <a href="asistencia.php" class="nav-link" id="asistencias" >
+              <i class="material-icons">Asistant</i>
+              <p>Registrar Asistencia</p>
+            </a>
+          </li>
+
+          <li class="nav-item  ">
+            
+            <a href="avances.php" class="nav-link" id="avances" >
+              <i class="material-icons">Asistant</i>
+              <p>Avance de Metas</p>
+            </a>
+          </li>
+
           <li class="nav-item  ">
             
             <a href="#" class="nav-link" id="reportes" >

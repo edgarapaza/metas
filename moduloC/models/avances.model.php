@@ -16,13 +16,7 @@ class Reportes
 	{
 		
 		$sql = "INSERT INTO reportes VALUES (null,'$id_personal','$id_responsabilidades','$f_reportes','$cantidad_avance');";
-	
-		if(!$this->conn->query($sql)){
-			echo "Error: " . mysqli_error($this->conn);
-			exit();
-		}
-
-		echo "Guardado Satisfactoriamente";
+		$this->conn->ConsultaSin($sql);
 		
 	}
 
@@ -33,19 +27,9 @@ class Reportes
 
 	public function Consultar()
 	{
-		$sql = "SELECT id_reportes, id_personal, id_responsabilidades, f_reportes, cantidad_avance FROM reportes;";
-		
-		if(!$response = $this->conn->query($sql))
-		{
-			echo "Error Mostrar Resultados: " . mysqli_error($this->conn);
-			exit();
-		}
-
-		return $response;
+		$sql = "SELECT id_reportes, id_personal, id_responsabilidades, f_reportes, cantidad_avance FROM reportes";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
 	}
 
-	public function CrearOficinas()
-	{
-		
-	}
 }

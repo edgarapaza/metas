@@ -1,0 +1,67 @@
+body{
+	font-size: 16px;
+}
+.asistencia{
+	width: 60%;
+	background-color: #fff;
+	padding: 3%;
+}
+.asistencia-titulo{
+	background-color: #197998;
+	text-align: center;	
+	height: 100px;
+	color: white;
+}
+.texto{
+	display: flex;
+	flex-direction: column;
+	margin-top: 5px;
+	font-size: 3em;
+}
+
+.asistencia-cuerpo{
+	width: 100%;		
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.asistencia-entrada{
+	width: 40%;
+	border: 1px solid #61bff9;
+	border-radius: 5%;
+}
+.asistencia-salida{
+	width: 40%;
+	border: 1px solid #EDB0B0;
+	border-radius: 5%;
+}
+.azul{
+	background-color: #61bff9;
+	height: 60px;
+}
+.rojo{
+	background-color: #EDB0B0;
+	height: 60px;
+}
+.asistencia-logo{
+	margin: 10px 0px 10px 0px;
+	text-align: center;
+}
+.asistencia-entrada{
+	float: left;
+	margin: 10px;
+}
+
+.asistencia-salida{
+	float: right;
+	margin: 10px;
+}
+
+.asistencia-entrada-cabecera{
+	display: flex;
+	background-color: #196FA6;
+}
+.asistencia-salida-cabecera{
+	background-color: #EDB0B0;
+}

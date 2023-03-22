@@ -1,12 +1,11 @@
 <?php
-require("../moduloA/models/personal.model.php");
-require("../moduloA/models/responsabilidades.model.php");
+require "./models/personal.model.php";
+
 
 $personal = new Personal();
 $data = $personal->Consultar();
 
-$responsabilidad = new Responsabilidades();
-$data1 = $responsabilidad->Consultar()
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,17 +36,7 @@ $data1 = $responsabilidad->Consultar()
 								<?php } ?>
 				</select>
 			</div>
-			<div class="form-oto for=">
-				<label for="">Responsabilidad:</label>
-				<select name="id_responsabilidades" id="" class="form-control">
-					<option value="0" selected="selected">Select</option>
-						<?php 
-							while ($fila = $data1->fetch_array(MYSQLI_ASSOC)) {					
-					    ?>
-					<option value="<?php echo $fila['id_responsabilidades']; ?>"><?php echo $fila['nomb_resp'];?></option>
-								<?php } ?>
-				</select>
-			</div>
+			
 			<div class="form-group">
 				<label for="">fecha de reporte:</label>
 				<input type="date" class="form-control" id="" name="f_reportes" placeholder="fecha_reporte">

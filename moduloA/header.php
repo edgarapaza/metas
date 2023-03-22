@@ -8,6 +8,7 @@ if(isset($_SESSION['admin']))
   $data = $login->NombrePersonal($_SESSION['admin']);
 
 ?>
+
 <!doctype html>
 <html lang="es-ES">
   <head>

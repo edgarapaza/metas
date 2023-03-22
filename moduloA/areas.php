@@ -7,7 +7,6 @@ $office = $oficinas->Consultar();
 
 ?>
 
-
 	<div class="container">
 		<div class="row">
 		<h1>AREAS</h1>
