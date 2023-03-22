@@ -1,6 +1,9 @@
 <?php
 require "./models/personal.model.php";
+require "./models/funciones.model.php";
 
+$funciones = new Funciones();
+$data1 = $funciones->Consultar();
 
 $personal = new Personal();
 $data = $personal->Consultar();
@@ -36,7 +39,17 @@ $data = $personal->Consultar();
 								<?php } ?>
 				</select>
 			</div>
-			
+			<div class="form-oto for=">
+				<label for="">Funciones:</label>
+				<select name="id_responsabilidades" id="" class="form-control">
+					<option value="0" selected="selected">Select</option>
+						<?php 
+							while ($fila = $data1->fetch_array(MYSQLI_ASSOC)) {					
+					    ?>
+					<option value="<?php echo $fila['id_acciones']; ?>"><?php echo $fila['funcion'];?></option>
+								<?php } ?>
+				</select>
+			</div>
 			<div class="form-group">
 				<label for="">fecha de reporte:</label>
 				<input type="date" class="form-control" id="" name="f_reportes" placeholder="fecha_reporte">
