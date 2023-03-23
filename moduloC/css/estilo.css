@@ -50,12 +50,13 @@ body{
 }
 .asistencia-entrada{
 	float: left;
-	margin: 10px;
+	margin-right: 60px;
+	width: 100%;
 }
 
 .asistencia-salida{
 	float: right;
-	margin: 10px;
+	margin-left: 60px width: 100%;
 }
 
 .asistencia-entrada-cabecera{
