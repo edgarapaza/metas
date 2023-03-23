@@ -15,8 +15,8 @@
                 <br>
                 <span><img src="images/candado.png" alt=""></span>
                 <input type="password" name="pass1" id="pass1">
-            </div>
-            <div class="asistencia-cuerpo">
+        </div>
+        <div class="asistencia-cuerpo">
                 <!-- Cuadros asistencia -->
                 <div class="asistencia-entrada">
                     <div class="azul">
@@ -28,7 +28,7 @@
                       </div>
                     </div>
 
-                </div>
+        </div>
 
                 <div class="asistencia-salida">
                     <div class="rojo">
