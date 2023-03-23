@@ -119,17 +119,35 @@ if(isset($_SESSION['personal']))
                   
                    Bienvenid@, <?php   echo $data['personal']; ?>
                     <a href="../controllers/logout.php"> <button class="btn btn-default" name="salir">Salir</button></a>
+                   
                 </a>
               </li>
+
               <!-- your navbar here -->
             </ul>
           </div>
+          
         </div>
+
+
+
       </nav>
       <!-- End Navbar -->
+
+      
+
+        
+
+      
+
+
+
+
     <?php 
   }
   else{
     
     header("Location: ../index.html");
   } ?>
+
+

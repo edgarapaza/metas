@@ -25,8 +25,8 @@ $data = $datper->MostrarPersonal($_SESSION['personal']);
                 <br>
                 <span><img src="images/candado.png" alt=""></span>
                 <input type="password" name="pass1" id="pass1">
-            </div>
-            <div class="asistencia-cuerpo">
+        </div>
+        <div class="asistencia-cuerpo">
                 <!-- Cuadros asistencia -->
                 <a href="#">
                     <div class="asistencia-entrada">
