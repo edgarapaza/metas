@@ -1,4 +1,7 @@
 <?php
+session_start();
+include_once("header.php");
+
 require "./models/personal.model.php";
 require "./models/funciones.model.php";
 
