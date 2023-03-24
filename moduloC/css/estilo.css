@@ -31,11 +31,17 @@ body{
 	width: 40%;
 	border: 1px solid #61bff9;
 	border-radius: 5%;
+	float: left;
+	margin-right: 60px;
+	width: 100%;
 }
 .asistencia-salida{
 	width: 40%;
 	border: 1px solid #EDB0B0;
 	border-radius: 5%;
+	float: right;
+	margin-left: 60px;
+	width: 100%;
 }
 .azul{
 	background-color: #61bff9;
@@ -48,16 +54,6 @@ body{
 .asistencia-logo{
 	margin: 10px 0px 10px 0px;
 	text-align: center;
-}
-.asistencia-entrada{
-	float: left;
-	margin-right: 60px;
-	width: 100%;
-}
-
-.asistencia-salida{
-	float: right;
-	margin-left: 60px width: 100%;
 }
 
 .asistencia-entrada-cabecera{
