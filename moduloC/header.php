@@ -111,6 +111,7 @@ if(isset($_SESSION['personal']))
               <!-- your navbar here -->
             </ul>
           </div>
+
             <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
@@ -124,8 +125,11 @@ if(isset($_SESSION['personal']))
               <!-- your navbar here -->
             </ul>
           </div>
+          <div class="centrar">hola</div>
         </div>
+       
       </nav>
+      
       <!-- End Navbar -->
     <?php 
   }
