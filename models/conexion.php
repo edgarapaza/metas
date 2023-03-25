@@ -8,8 +8,8 @@ class Conexion
 	function __construct()
 	{
 	    $host = "localhost";
-        $user = "usuario";
-        $pass = "archivo123$";
+        $user = "root";
+        $pass = "";
         $db   = "avancemetas";
 
         $this->conn = new mysqli($host, $user, $pass, $db);

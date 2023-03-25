@@ -114,6 +114,7 @@ if(isset($_SESSION['personal']))
               <!-- your navbar here -->
             </ul>
           </div>
+
             <div class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
               <li class="nav-item">
@@ -125,31 +126,16 @@ if(isset($_SESSION['personal']))
                    
                 </a>
               </li>
-
               <!-- your navbar here -->
             </ul>
           </div>
-          
         </div>
-
-
-
+        </div>
       </nav>
       <!-- End Navbar -->
-
-      
-
-        
-
-      
-
-
-
-
     <?php 
   }
   else{
-    
     header("Location: ../index.html");
   } ?>
 
