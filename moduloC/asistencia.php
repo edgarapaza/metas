@@ -1,25 +1,25 @@
 <?php
-session_start();
-
+##session_start();
+include "header.php";
 include "./models/personal.model.php";
 
 $datper = new Personal();
 $data = $datper->MostrarPersonal($_SESSION['personal']);
 ?>
 
-<script type="text/javascript">
-    function Tipo()
-    {
-
-    }
-</script>
 
 <link rel="stylesheet" href="css/estilo.css">
+<script type="text/javascript">
+    function Tipo(valor)
+    {
+        var dat = document.getElementById('tipo').value = valor;
+    }
 
+</script>
 
-<form action="./controllers/asistencia.controller.php">
+<form action="./controllers/asistencia.controller.php" method="get">
     <input type="text" name="idpersonal" id="idpersonal" value="<?php echo $_SESSION['personal'];?>">
-    <input type="text" name="tipo" id="tipo" value="Entrada">
+    <input type="text" name="tipo" id="tipo" value="">
 
       <div class="content">
         <div class="container-fluid">
@@ -36,10 +36,10 @@ $data = $datper->MostrarPersonal($_SESSION['personal']);
                     <br>
                     <span><img src="images/candado.png" alt=""></span>
                     <input type="password" name="pass1" id="pass1" required>
-            </div>
-            <div class="asistencia-cuerpo">
+                </div>
+                <div class="asistencia-cuerpo">
                     <!-- Cuadros asistencia -->
-                    <a href="#" onclick="Tipo()">
+                    <a href="#" onclick="Tipo('Entrada')">
                         <div class="asistencia-entrada">
                             <div class="azul">
                               <h3>ENTRADA</h3>
@@ -53,7 +53,7 @@ $data = $datper->MostrarPersonal($_SESSION['personal']);
                         </div>
                     </a>
 
-                    <a href="#">
+                    <a href="#" onclick="Tipo('Salida')">
                         <div class="asistencia-salida">
                             <div class="rojo">
                                 <h3>SALIDA</h3>
@@ -67,9 +67,11 @@ $data = $datper->MostrarPersonal($_SESSION['personal']);
                     </a>
 
                 </div>
+                <br>
+                <center><button type="submit" id="registrar">Registrar Asistencia</button></center>
 
              </div>
         </div>
       </div>
-    <button type="submit">Registrar Asistencia</button>
+<button id="ver" type="button">ver</button>
 </form>
