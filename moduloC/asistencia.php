@@ -105,7 +105,7 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                       <button id="close1">cerrar</button>
                     </div>
                   </div>
-              <!--hasta aqui-->
+              <!--hasta aqui es-->
         </div>
       </div>
 <button id="ver" type="button">ver</button>
