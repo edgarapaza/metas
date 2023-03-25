@@ -1,6 +1,6 @@
 <?php
-session_start();
-
+##session_start();
+include "header.php";
 include "./models/personal.model.php";
 
 $datper = new Personal();
@@ -18,19 +18,19 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
   
 ?>
 
-<script type="text/javascript">
-    function Tipo()
-    {
-
-    }
-</script>
 
 <link rel="stylesheet" href="css/estilo.css">
+<script type="text/javascript">
+    function Tipo(valor)
+    {
+        var dat = document.getElementById('tipo').value = valor;
+    }
 
+</script>
 
-<form action="./controllers/asistencia.controller.php">
+<form action="./controllers/asistencia.controller.php" method="get">
     <input type="text" name="idpersonal" id="idpersonal" value="<?php echo $_SESSION['personal'];?>">
-    <input type="text" name="tipo" id="tipo" value="Entrada">
+    <input type="text" name="tipo" id="tipo" value="">
 
       <div class="content">
         <div class="container-fluid">
@@ -46,11 +46,11 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                     <img class="person" src="images/person.png" alt="Persona">
                     <br>
                     <span><img src="images/candado.png" alt=""></span>
-                    <input class="entrada"type="password" name="pass1" id="pass1" required>
+                    <input type="password" name="pass1" id="pass1" required>
             </div>
             <div class="asistencia-cuerpo">
                     <!-- Cuadros asistencia -->
-                    <a href="#" onclick="Tipo()" id="open">
+                    <a href="#" onclick="Tipo()">
                         <div class="asistencia-entrada">
                             <div class="azul">
                               <h3>ENTRADA</h3>
@@ -64,7 +64,7 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                         </div>
                     </a>
 
-                    <a href="#" id="open1">
+                    <a href="#">
                         <div class="asistencia-salida">
                             <div class="rojo">
                                 <h3>SALIDA</h3>
@@ -78,6 +78,7 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                     </a>
 
                 </div>
+
              </div>
              <!--ventana emergente 1-->
              <div class="modal-container" id="modal_container">
@@ -107,6 +108,5 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
               <!--hasta aqui-->
         </div>
       </div>
-    <button type="submit">Registrar Asistencia</button>
+<button id="ver" type="button">ver</button>
 </form>
-<script src="ventanaE.js"></script>

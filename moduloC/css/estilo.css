@@ -135,3 +135,15 @@ button {
 .asistencia-salida-cabecera{
 	background-color: #EDB0B0;
 }
+
+/*boton registrar*/
+#registrar{
+	background-color: #61bff9;
+	border: 0px;
+	border-radius: 10px;
+	box-shadow: 10px 5px 5px #000;
+	font-weight: bold;
+	font-size: 1.5em;
+	height: 50px;
+	padding: 10px;
+}
