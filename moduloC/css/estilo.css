@@ -1,11 +1,22 @@
+/*intento de ponerle backbound*/
 body{
 	font-size: 16px;
+	background: url(/images/bgrund.jpg);
+	/*background-size: cover;
+    background-position: center;*/
 }
-
+h1{
+	padding-top: 3%;
+}
 .asistencia{
-	width: 60%;
-	background-color: #fff;
-	padding: 3%;
+	position: relative;
+	inset: 0;
+	margin: auto;
+	width: 25%;
+	background: transparent;
+	padding: 5%;
+	backdrop-filter: blur(20px);
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0);
 }
 .asistencia-titulo{
 	background-color: #197998;
@@ -19,42 +30,103 @@ body{
 	margin-top: 5px;
 	font-size: 3em;
 }
-
+/*cambios jersson*/
 .asistencia-cuerpo{
 	width: 100%;		
 	text-align: center;
 	display: flex;
 	justify-content: center;
+	/*background-color: green;*/
 }
 
 .asistencia-entrada{
+	position: relative;
+	left: -10px;
 	width: 40%;
 	border: 1px solid #61bff9;
-	border-radius: 5%;
+	border-radius: 10%;
 	float: left;
 	margin-right: 60px;
 	width: 100%;
+	background-color: rgb(134, 134, 238);
 }
 .asistencia-salida{
+	position: relative;
+	right: -10px;
 	width: 40%;
 	border: 1px solid #EDB0B0;
-	border-radius: 5%;
+	border-radius: 10%;
 	float: right;
 	margin-left: 60px;
 	width: 100%;
+	background-color: antiquewhite;
 }
 .azul{
 	background-color: #61bff9;
 	height: 60px;
 }
+.azul h3{
+	position: relative;
+	top: 15px;
+}
 .rojo{
 	background-color: #EDB0B0;
 	height: 60px;
 }
+.rojo h3{
+	position: relative;
+	top: 15px;
+}
+/*mensaje emergente*/
+.modal-container{
+    display: flex;
+    background-color:rgba(0, 0, 0, 0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    pointer-events: none;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+.show{
+	pointer-events: auto;
+	opacity: 1;
+}
+
+.modal {
+    background-color: #fff;
+    width: 600px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+button {
+    background-color: #47a386;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 25px;
+}
+/*hasta aqui*/
+
+/*centrando un input-jersson*/
 .asistencia-logo{
+	/*background-color: blue;*/
 	margin: 10px 0px 10px 0px;
 	text-align: center;
 }
+.asistencia-logo .entrada{
+	position: relative;
+	bottom: 13px;	
+}
+/*hasta aqui cambios-jersson*/
 
 .asistencia-entrada-cabecera{
 	display: flex;
