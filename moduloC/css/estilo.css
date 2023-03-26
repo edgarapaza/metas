@@ -9,12 +9,9 @@ h1{
 	padding-top: 3%;
 }
 .asistencia{
-	position: relative;
-	inset: 0;
 	margin: auto;
-	width: 25%;
+	width: 40%;
 	background: transparent;
-	padding: 5%;
 	backdrop-filter: blur(20px);
 	box-shadow: 0 0 30px rgba(0, 0, 0, 0);
 }

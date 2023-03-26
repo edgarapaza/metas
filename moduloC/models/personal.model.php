@@ -14,7 +14,7 @@ class Personal
 	public function Guardar($nombre,$apellidos,$sexo,$telefono,$fecha_nac,$email,$foto, $dni )
 	{
 		$fechaActual = date('Y-m-d H:i:s');
-		$foto="./imagenes/usuario.png";
+		$foto="./images/usuario.png";
 
 		$sql = "INSERT INTO personal(id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI,f_creacion)VALUES (null ,'$nombre','$apellidos','$sexo','$telefono','$fecha_nac','$email','$foto','$dni','$fechaActual')";
 		$this->conn->ConsultaSin($sql);
@@ -42,6 +42,13 @@ class Personal
 	public function MostrarPersonalAccion($idpersonal)
 	{
 		$sql = "SELECT nombre, apellidos FROM personal WHERE id_personal = $idpersonal";
+		$response = $this->conn->ConsultaArray($sql);
+		return $response;
+	}
+
+	public function VerRegistro($idpersonal)
+	{
+		$sql = "SELECT * FROM asistencia";
 		$response = $this->conn->ConsultaArray($sql);
 		return $response;
 	}

@@ -5,10 +5,10 @@ $asistencia = new Asistencia();
 
 $data = $asistencia->DevolverPassword($_SESSION['personal']);
 
-$passwd = $_REQUEST['pass1'];
-$idpersonal = $_SESSION['personal'];
-$fecha = date('Y-m-d');
-$hora = date('H:i:s');
+@$passwd = $_REQUEST['pass1'];
+@$idpersonal = $_SESSION['personal'];
+@$fecha = date('Y-m-d');
+@$hora = date('H:i:s');
 echo $tipo = $_REQUEST['tipo'];
 
 if(empty($tipo)){

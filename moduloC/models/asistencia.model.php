@@ -24,6 +24,5 @@ class Asistencia
 		return $data;
 	}
 
-
 }
 ?>

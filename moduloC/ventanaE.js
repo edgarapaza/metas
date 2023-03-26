@@ -1,3 +1,4 @@
+
 const open = document.getElementById('open');
 const open1 = document.getElementById('open1');
 const modal_container = document.getElementById('modal_container');
@@ -7,7 +8,6 @@ const close1 = document.getElementById('close1');
 
 open.addEventListener('click', () => {
     modal_container.classList.add('show');
-
 });
 
 close.addEventListener('click', () => {
@@ -21,3 +21,8 @@ open1.addEventListener('click', () => {
 close1.addEventListener('click', () => {
     modal_container1.classList.remove('show');
 });
+
+function Tipo(valor)
+{
+    document.getElementById('tipo').value = valor;
+}

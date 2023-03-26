@@ -1,42 +1,27 @@
 <?php
-##session_start();
-include "header.php";
+session_start();
+#include "header.php";
 include "./models/personal.model.php";
 
+# Instanciar al al clase persona
 $datper = new Personal();
 $data = $datper->MostrarPersonal($_SESSION['personal']);
+$registro = $datper->VerRegistro($_SESSION['personal']);
 
 //crear una clase model para las avisos emergentes
-class Model{
-public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
-    {
-        $sql = "SELECT CONCAT(nombre,' ',apellidos) AS personal, foto FROM personal WHERE id_personal = $idpersonal;";
-        $this->conn->ConsultaCon($sql);
-        return $sql;
-    }
-  }
-  
+
 ?>
 
-
 <link rel="stylesheet" href="css/estilo.css">
-<script type="text/javascript">
-    function Tipo(valor)
-    {
-        var dat = document.getElementById('tipo').value = valor;
-    }
-
-</script>
+<script type="text/javascript" src="ventanaE.js"></script>
 
 <form action="./controllers/asistencia.controller.php" method="get">
-    <input type="text" name="idpersonal" id="idpersonal" value="<?php echo $_SESSION['personal'];?>">
+    <input type="hidden" name="idpersonal" id="idpersonal" value="<?php echo $_SESSION['personal'];?>">
     <input type="text" name="tipo" id="tipo" value="">
 
-      <div class="content">
-        <div class="container-fluid">
-             <div id="cuerpo"></div>
-                <h2>Registro de asistencia</h2>
 
+        <div class="container-fluid">
+                <h2>Registro de asistencia</h2>
              <div class="asistencia">
                 <div class="asistencia-titulo">
                   <h1>¿Quieres registrar?</h1>
@@ -50,7 +35,7 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
             </div>
             <div class="asistencia-cuerpo">
                     <!-- Cuadros asistencia -->
-                    <a href="#" onclick="Tipo()">
+                    <a href="#" onclick="Tipo('Entrada')">
                         <div class="asistencia-entrada">
                             <div class="azul">
                               <h3>ENTRADA</h3>
@@ -64,7 +49,7 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                         </div>
                     </a>
 
-                    <a href="#">
+                    <a href="#" onclick="Tipo('Salida')">
                         <div class="asistencia-salida">
                             <div class="rojo">
                                 <h3>SALIDA</h3>
@@ -86,9 +71,9 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                     <h1>REGISTRO DE ASISTENCIA EXITOSO</h1>
                     <p>
                       Usted marco su asistencia<br>
-                      nombre: <br>
-                      hora: <br>
-                      fecha: <br>
+                      nombre: <?php echo $registro['nombre'];?><br>
+                      hora: <?php echo $registro['hora'];?><br>
+                      fecha: <?php echo $registro['fecha'];?><br>
                     </p>
                     <button id="close">cerrar</button>
                   </div>
@@ -107,6 +92,4 @@ public function Dates($codigoPersonal, $idpersonal, $username,$password,$nivel)
                   </div>
               <!--hasta aqui es-->
         </div>
-      </div>
-<button id="ver" type="button">ver</button>
 </form>
