@@ -28,14 +28,24 @@ class ValidarUsuario
 		function RegistrarAsistencia($idpersonal, $fecha, $hora, $tipo)
 		{
 			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$hora','$tipo');";
-			$data = $this->conn->ConsultaSin($sql);
-			return $data;
-
+			$this->conn->ConsultaSin($sql);
 		}
 
-		public function IniciaContador()
+		function RegistrarBitacora($idpersonal, $fecha, $hora, $tipo)
 		{
+			$sql = "INSERT INTO bitacora VALUES (null,'$idpersonal','$fecha','$hora','$tipo',null,null);";
+			$this->conn->ConsultaSin($sql);
 
+			$sql2 = "SELECT idbitacora FROM bitacora WHERE idpersonal = $idpersonal ORDER BY idbitacora DESC LIMIT 1";
+			$data = $this->conn->ConsultaArray($sql2);
+			return $data;
 		}
+
+		function AddSalida($horasalida, $tiempo, $idbitacora)
+		{
+			$sql = "UPDATE bitacora SET horasalida = '$horasalida', tiempo = '$tiempo' WHERE idbitacora = $idbitacora";
+			$this->conn->ConsultaSin($sql);
+		}
+
 	}
  ?>
