@@ -27,7 +27,7 @@ class ValidarUsuario
 
 		function RegistrarAsistencia($idpersonal, $fecha, $hora, $tipo)
 		{
-			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$hora','$tipo');";
+			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$hora','$tipo',null,null);";
 			$this->conn->ConsultaSin($sql);
 		}
 

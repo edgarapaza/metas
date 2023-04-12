@@ -1,30 +1,31 @@
 <?php
+require "Conexion.php";
 
-	class Persona
+class Persona
 	{
-		private $mysqli;
+		private $conn;
 
 		function __construct()
 		{
-			require_once "../coreB/Conexion.php";
-			$conn = new Conexion();
-			$this->mysqli = $conn->Conectar();
-			return $this->mysqli;
+			$this->conn = new Conexion();
+			return $this->conn;
 		}
 
-		function Add($cargo,$oficina,$institucion,$nombre,$paterno,$materno,$dni,$celular,$telcasa,$email,$direccion,$barrio,$gs,$foto){
+		function Add($cargo,$oficina,$institucion,$nombre,$paterno,$materno,$dni,$celular,$telcasa,$email,$direccion,$barrio,$gs,$foto)
+		{
 			$sql= "INSERT INTO personal VALUES(null,$cargo,$oficina,$institucion,'$nombre','$paterno','$materno','$dni','$celular','$telcasa','$email','$direccion','$barrio','$gs',null)";
-			$this->mysqli->query($sql);
+			$this->conn->ConsultaSin($sql);
 		}
 
-		function Remove($idpersonal){
+		function Remove($idpersonal)
+		{
 			$sql= "DELETE FROM personal WHERE id_personal = $idpersonal LIMIT 1";
-			$this->mysqli->query($sql);
+			$this->conn->ConsultaSin($sql);
 		}
 
 		function Edit($cargo,$oficina,$institucion,$celular,$telcasa,$email,$direccion,$barrio){
 			$sql= "UPDATE personal SET id_cargo = $cargo, id_oficina = $oficina, id_institucion = $institucion, celular = '{$celular}', telcasa = '{$telcasa}',email = '{$email}', direccion = '{$direccion}', barrio = '{$barrio}'";
-			$this->mysqli->query($sql);
+			$this->conn->ConsultaSin($sql);
 		}
 
 		function EditFoto($foto){
@@ -33,15 +34,15 @@
 
 		function MostrarTodo(){
 			$sql= "SELECT * FROM personal ORDER BY paterno;";
-			$datos = $this->mysqli->query($sql);
+			$datos = $this->conn->ConsultaCon($sql);
 
 			return $datos;
 		}
 
-		function MostrarPersona($idpersonal){
-			$sql = "SELECT CONCAT(nombre,' ', paterno,' ',materno) AS personal FROM personal WHERE id_personal = $idpersonal;";
-			$data1 = $this->mysqli->query($sql);
-			$data = $data1->fetch_assoc();
+		function MostrarPersona($idpersonal)
+		{
+			$sql = "SELECT CONCAT(nombre,' ', apellidos) AS personal FROM personal WHERE id_personal = $idpersonal";
+			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
 	}
