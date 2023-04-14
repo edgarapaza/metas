@@ -1,11 +1,11 @@
 <?php
-/*
+
 session_start();
 require "../models/Persona.model.php";
 $persona = new Persona();
 $data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -331,8 +331,8 @@ $_SESSION['inicio'];
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General</span>
+            <a href="tablas.php">
+              <i class="bi bi-circle"></i><span>Usuarios</span>
             </a>
           </li>
         </ul>
