@@ -11,7 +11,7 @@ class Funciones
 		return $this->conn;
 	}
 
-	public function Guardar($id_personal,$id_responsabilidades,$f_reportes,$cantidad_avance)
+	function Guardar($id_personal,$id_responsabilidades,$f_reportes,$cantidad_avance)
 	{
 		
 		$sql = "INSERT INTO reportes VALUES (null,'$id_personal','$id_responsabilidades','$f_reportes','$cantidad_avance');";
@@ -19,14 +19,17 @@ class Funciones
 		
 	}
 
-	public function Modificar()
+	function ConsultaReporte($idpersonal, $idfunciones)
 	{
-		
+		$fecha = date("Y-m-d");
+		$sql ="SELECT idreporte, tipo FROM reportes WHERE idpersonal = $idpersonal AND idfunciones = $idfunciones AND fecha = '$fecha'";
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
 	}
 
-	public function Consultar()
+	function Consultar($idpersonal)
 	{
-		$sql = "SELECT id_acciones, id_personal, id_cargos, funcion, unimed,cantidad FROM funciones";
+		$sql = "SELECT idfunciones,id_personal,id_cargos,funcion,unimed,cantidad FROM funciones WHERE id_personal = ". $idpersonal;
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}

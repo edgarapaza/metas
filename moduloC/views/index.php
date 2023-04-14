@@ -2,9 +2,14 @@
 
 session_start();
 require "../models/Persona.model.php";
+require "../models/funciones.model.php";
+
 $persona = new Persona();
 $data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
+
+$funciones = new Funciones();
+$fun = $funciones->Consultar($_SESSION['personal']);
 
 ?>
 <!DOCTYPE html>
@@ -361,6 +366,7 @@ $_SESSION['inicio'];
     <div class="pagetitle">
       <h1>Dashboard</h1>
 
+
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -379,27 +385,46 @@ $_SESSION['inicio'];
 
               <!-- List group with custom content -->
               <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start" id="1">
+
+                 <?php
+                    $i = 1;
+                    while($fila = $fun->fetch_array(MYSQLI_ASSOC))
+                    {
+                      #echo $fila['idfunciones'];
+                      #echo $fila['id_personal'];
+                      #echo $fila['id_cargos'];
+                      #echo $fila['unimed'];
+                      #echo $fila['cantidad'];
+                      #echo $i;
+                    ?>
+
+                <li class="list-group-item d-flex justify-content-between align-items-start" id="<?php echo $i; ?>">
                   <div class="ms-2 me-auto">
-                    <div class="fw-bold">Desarrollo de software</div>
+                    <input type="text" name="idpersonal" id="idpersonal<?php echo $i; ?>" value="<?php echo $_SESSION['personal'];?>">
+                    <input type="text" name="idfunciones" id="idfunciones<?php echo $i; ?>" value="<?php echo $fila['idfunciones'];?>">
+                    <input type="text" name="unimed" id="unimed<?php echo $i; ?>" value="<?php echo $fila['unimed'];?>">
+
+                    <div class="fw-bold"><?php echo $fila['funcion'];?></div>
                     des
                   </div>
-                  <span class="badge bg-danger rounded-pill">Falta</span>
+                  <?php
+                    # $idpersonal,$idfunciones,$cantidad,$obs    $fecha,$tipo
+                    $respose = $funciones->ConsultaReporte($_SESSION['personal'], $fila['idfunciones']);
+                    #echo $respose['tipo'];
+                    if($respose['tipo'] == 1)
+                    {
+                      echo "<span class='badge bg-success rounded-pill'>OK</span>";
+                    }else{
+                      echo "<span class='badge bg-danger rounded-pill'>FALTA</span>";
+                    }
+                  ?>
+
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start" id="2">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Ingreso a Base de Datos</div>
-                    des
-                  </div>
-                  <span class="badge bg-success rounded-pill">OK</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start" id="3">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Revision de Escrituras</div>
-                    des
-                  </div>
-                  <span class="badge bg-success rounded-pill">OK</span>
-                </li>
+                <?php
+                $i++;
+                }
+                ?>
+
               </ol><!-- End with custom content -->
 
             </div>
@@ -407,26 +432,27 @@ $_SESSION['inicio'];
 
         </div>
 
+        <!-- Inicio del FORMULARIO -->
+        <div id="mensaje"></div>
         <div class="col-lg-6">
-
-          <div class="card">
+        <form action="" >
+          <div class="card" id="reporte">
             <div class="card-body">
               <h5 class="card-title">Reporte</h5>
-                      <label for="yourPassword" class="form-label">Cuanto avance hoy?</label>
+                      <label for="" class="form-label">Cuanto avance hoy?</label>
                     <div class="input-group mb-3">
                       <input type="text" class="form-control" placeholder="" aria-label="Recibe un Numero" aria-describedby="basic-report">
-                      <span class="input-group-text" id="basic-report">Porcentaje %</span>
+                      <span class="input-group-text" id="basic-report"><span id="miunimed"></span></span>
                     </div>
                     <br>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Guardar</button>
-                    </div>
-
-
-
+                    <input type="text" name="miidpersonal" id="miidpersonal">
+                      <input type="text" name="miidfuncion" id="miidfuncion">
+                      <div class="col-12">
+                          <button class="btn btn-primary w-50" name="btnSaveReporte" id="btnSaveReporte" type="button">Guardar</button>
+                      </div>
             </div>
           </div>
-
+        </form>
         </div>
       </div>
     </section>
@@ -455,8 +481,8 @@ $_SESSION['inicio'];
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
   <script src="assets/js/index.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 
