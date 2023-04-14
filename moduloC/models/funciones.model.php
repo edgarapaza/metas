@@ -22,7 +22,8 @@ class Funciones
 	function ConsultaReporte($idpersonal, $idfunciones)
 	{
 		$fecha = date("Y-m-d");
-		$sql ="SELECT idreporte, tipo FROM reportes WHERE idpersonal = $idpersonal AND idfunciones = $idfunciones AND fecha = '$fecha'";
+		$sql ="SELECT idreporte, tipo FROM reportes WHERE idpersonal = $idpersonal AND idfunciones = $idfunciones AND fecha LIKE '$fecha%';";
+		
 		$data = $this->conn->ConsultaArray($sql);
 		return $data;
 	}

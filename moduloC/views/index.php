@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require "../models/Persona.model.php";
 require "../models/funciones.model.php";
@@ -374,6 +373,12 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </ol>
       </nav>
     </div><!-- End Page Title -->
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                 <div id="mensaje"></div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
 
     <section class="section">
       <div class="row">
@@ -400,23 +405,30 @@ $fun = $funciones->Consultar($_SESSION['personal']);
 
                 <li class="list-group-item d-flex justify-content-between align-items-start" id="<?php echo $i; ?>">
                   <div class="ms-2 me-auto">
-                    <input type="text" name="idpersonal" id="idpersonal<?php echo $i; ?>" value="<?php echo $_SESSION['personal'];?>">
-                    <input type="text" name="idfunciones" id="idfunciones<?php echo $i; ?>" value="<?php echo $fila['idfunciones'];?>">
-                    <input type="text" name="unimed" id="unimed<?php echo $i; ?>" value="<?php echo $fila['unimed'];?>">
+                    <input type="hidden" name="idpersonal" id="idpersonal<?php echo $i; ?>" value="<?php echo $_SESSION['personal'];?>">
+                    <input type="hidden" name="idfunciones" id="idfunciones<?php echo $i; ?>" value="<?php echo $fila['idfunciones'];?>">
+                    <input type="hidden" name="unimed" id="unimed<?php echo $i; ?>" value="<?php echo $fila['unimed'];?>">
 
                     <div class="fw-bold"><?php echo $fila['funcion'];?></div>
                     des
                   </div>
                   <?php
                     # $idpersonal,$idfunciones,$cantidad,$obs    $fecha,$tipo
-                    $respose = $funciones->ConsultaReporte($_SESSION['personal'], $fila['idfunciones']);
-                    #echo $respose['tipo'];
-                    if($respose['tipo'] == 1)
+                    $response = $funciones->ConsultaReporte($_SESSION['personal'], $fila['idfunciones']);
+                    
+                    
+                    #echo $response['tipo'];
+                    if(!is_null($response))
                     {
-                      echo "<span class='badge bg-success rounded-pill'>OK</span>";
-                    }else{
+                      
+                        echo "<span class='badge bg-success rounded-pill'>OK</span>";
+                     
+                      
+                    }
+                    else{
                       echo "<span class='badge bg-danger rounded-pill'>FALTA</span>";
                     }
+                    
                   ?>
 
                 </li>
@@ -433,7 +445,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </div>
 
         <!-- Inicio del FORMULARIO -->
-        <div id="mensaje"></div>
+              
         <div class="col-lg-6">
         <form action="" >
           <div class="card" id="reporte">
@@ -441,12 +453,12 @@ $fun = $funciones->Consultar($_SESSION['personal']);
               <h5 class="card-title">Reporte</h5>
                       <label for="" class="form-label">Cuanto avance hoy?</label>
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="" aria-label="Recibe un Numero" aria-describedby="basic-report">
+                      <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="" aria-label="Recibe un Numero" aria-describedby="basic-report">
                       <span class="input-group-text" id="basic-report"><span id="miunimed"></span></span>
                     </div>
                     <br>
-                    <input type="text" name="miidpersonal" id="miidpersonal">
-                      <input type="text" name="miidfuncion" id="miidfuncion">
+                      <input type="hidden" name="miidpersonal" id="miidpersonal">
+                      <input type="hidden" name="miidfuncion" id="miidfuncion">
                       <div class="col-12">
                           <button class="btn btn-primary w-50" name="btnSaveReporte" id="btnSaveReporte" type="button">Guardar</button>
                       </div>
