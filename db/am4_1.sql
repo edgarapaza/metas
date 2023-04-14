@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `avancemetas` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE  IF NOT EXISTS `avancemetas` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `avancemetas`;
 -- MySQL dump 10.13  Distrib 8.0.30, for Win64 (x86_64)
 --
@@ -23,19 +23,19 @@ USE `avancemetas`;
 
 DROP TABLE IF EXISTS `asistencia_asistencias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `asistencia_asistencias` (
   `idasistencia` int NOT NULL AUTO_INCREMENT,
   `idpersonal` int NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci NOT NULL,
+  `tipo` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `horasalida` time DEFAULT NULL,
   `tiempouso` double DEFAULT NULL,
   PRIMARY KEY (`idasistencia`),
   KEY `fk_asistencia_personal_idx` (`idpersonal`),
   CONSTRAINT `fk_asistencia_personal` FOREIGN KEY (`idpersonal`) REFERENCES `metas_personal` (`id_personal`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,19 +54,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asistencia_bitacora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `asistencia_bitacora` (
   `idbitacora` int NOT NULL AUTO_INCREMENT,
   `idpersonal` int NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci NOT NULL,
+  `tipo` varchar(45) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   `horasalida` time DEFAULT NULL,
   `tiempo` double DEFAULT NULL,
   PRIMARY KEY (`idbitacora`),
   KEY `fk_bitacora_personal_idx` (`idpersonal`),
   CONSTRAINT `fk_bitacora_personal` FOREIGN KEY (`idpersonal`) REFERENCES `metas_personal` (`id_personal`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,18 +85,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asistencia_login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `asistencia_login` (
   `log_usu` int NOT NULL,
   `id_personal` int NOT NULL,
-  `nom_usu` varchar(30) CHARACTER SET utf8mb3 NOT NULL,
-  `psw_usu` varchar(255) CHARACTER SET utf8mb3 NOT NULL,
+  `nom_usu` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `psw_usu` varchar(255) CHARACTER SET utf8 NOT NULL,
   `niv_usu` int NOT NULL DEFAULT '2',
   `chk_usu` tinyint NOT NULL,
   PRIMARY KEY (`log_usu`),
   UNIQUE KEY `log_usu_UNIQUE` (`log_usu`),
   KEY `id_personal` (`id_personal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_asignacionpersonal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_asignacionpersonal` (
   `idasignacion` int NOT NULL AUTO_INCREMENT,
   `idoficina` int NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `metas_asignacionpersonal` (
   `fecCreate` datetime DEFAULT NULL,
   `fecUpdtae` datetime DEFAULT NULL,
   PRIMARY KEY (`idasignacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,16 +147,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_cargos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_cargos` (
   `id_cargos` int NOT NULL AUTO_INCREMENT,
   `id_oficina` int NOT NULL,
-  `nombre_cargo` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre_cargo` varchar(150) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
   `fec_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_cargos`),
   KEY `fk_oficina_cargos_idx` (`id_oficina`),
   CONSTRAINT `fk_oficina_cargos` FOREIGN KEY (`id_oficina`) REFERENCES `metas_oficinas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,18 +175,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_datospersonal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_datospersonal` (
   `id_adpersonal` int NOT NULL AUTO_INCREMENT,
-  `profesion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `profesion` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
   `tiempo_servicio` int DEFAULT NULL,
-  `condicion` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `seguro_social` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `grupo_sanguineo` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `condicion` varchar(20) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `seguro_social` varchar(20) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `grupo_sanguineo` varchar(10) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
   `f_ingreso` date DEFAULT NULL,
   `f_deceso` date DEFAULT NULL,
   PRIMARY KEY (`id_adpersonal`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -205,7 +205,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_funciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_funciones` (
   `id_acciones` int NOT NULL AUTO_INCREMENT,
   `id_personal` int NOT NULL,
@@ -220,7 +220,7 @@ CREATE TABLE `metas_funciones` (
   KEY `id_cargos` (`id_cargos`),
   CONSTRAINT `metas_funciones_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `metas_personal` (`id_personal`),
   CONSTRAINT `metas_funciones_ibfk_2` FOREIGN KEY (`id_cargos`) REFERENCES `metas_cargos` (`id_cargos`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,15 +239,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_gerencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_gerencia` (
   `idgerencia` int NOT NULL AUTO_INCREMENT,
   `idinstitucion` int NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`idgerencia`),
   KEY `fk_gerencia_institucion_idx` (`idinstitucion`),
   CONSTRAINT `fk_gerencia_institucion` FOREIGN KEY (`idinstitucion`) REFERENCES `metas_institucion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,22 +266,22 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_institucion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_institucion` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre_inst` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `direccion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `telefono` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `RUC` char(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `p_web` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre_inst` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
+  `direccion` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
+  `telefono` varchar(30) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
+  `RUC` char(11) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
+  `p_web` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
   `fecha_creacion_archivo` date NOT NULL,
-  `n_resolucion` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `n_resolucion` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
   `id_metas` int NOT NULL,
   `fecha_create` datetime NOT NULL,
   `fecha_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,13 +300,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_jefearea`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_jefearea` (
   `id_jefearea` int NOT NULL AUTO_INCREMENT,
   `id_personal` int DEFAULT NULL,
   `id_areas` int DEFAULT NULL,
   PRIMARY KEY (`id_jefearea`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -325,14 +325,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_meta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_meta` (
   `id_metas` int NOT NULL AUTO_INCREMENT,
-  `nombre_meta` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nombre_meta` varchar(150) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
   `programado` double NOT NULL,
-  `unidad_medida` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `unidad_medida` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
   PRIMARY KEY (`id_metas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +350,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_metasareas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_metasareas` (
   `id_metas_areas` int NOT NULL AUTO_INCREMENT,
   `id_meta` int DEFAULT NULL,
@@ -358,7 +358,7 @@ CREATE TABLE `metas_metasareas` (
   `fecha_reporte` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cantidad_avance` double DEFAULT NULL,
   PRIMARY KEY (`id_metas_areas`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,18 +376,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_oficinas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_oficinas` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre_of` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `sigla` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombre_of` varchar(60) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
+  `sigla` varchar(10) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   `f_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_metas` int DEFAULT NULL,
   `id_institucion` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_of_UNIQUE` (`nombre_of`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,21 +406,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_personal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_personal` (
   `id_personal` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `apellidos` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `sexo` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `telefono` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `apellidos` varchar(100) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `sexo` varchar(10) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `telefono` varchar(15) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
   `fecha_nac` date DEFAULT NULL,
-  `email` varchar(80) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `DNI` char(8) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `foto` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `email` varchar(80) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `DNI` char(8) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
+  `foto` varchar(200) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   `f_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_personal`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -439,21 +439,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_reportes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_reportes` (
   `idreporte` int NOT NULL AUTO_INCREMENT,
   `idpersonal` int NOT NULL,
   `idfunciones` int NOT NULL,
   `fecha` timestamp NOT NULL,
-  `tipo` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tipo` varchar(45) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci NOT NULL,
   `cantidad` double NOT NULL DEFAULT '1',
-  `obs` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `obs` varchar(200) CHARACTER SET utf8 COLLATE utf8_0900_ai_ci DEFAULT NULL,
   PRIMARY KEY (`idreporte`),
   KEY `id_personal` (`idpersonal`),
   KEY `id_responsabilidades` (`idfunciones`),
   CONSTRAINT `fk_acciones_1` FOREIGN KEY (`idfunciones`) REFERENCES `metas_funciones` (`id_acciones`),
   CONSTRAINT `fk_personal_1` FOREIGN KEY (`idpersonal`) REFERENCES `metas_personal` (`id_personal`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -471,15 +471,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_subgerencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_subgerencia` (
   `idsubgerencia` int NOT NULL AUTO_INCREMENT,
   `idgerencia` int NOT NULL,
-  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish2_ci NOT NULL,
+  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish2_ci NOT NULL,
   PRIMARY KEY (`idsubgerencia`),
   KEY `fk_subgerencia_gerencia_idx` (`idgerencia`),
   CONSTRAINT `fk_subgerencia_gerencia` FOREIGN KEY (`idgerencia`) REFERENCES `metas_gerencia` (`idgerencia`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

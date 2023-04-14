@@ -11,6 +11,11 @@ class Login
         return $this->conn;
     }
 
+    function Login1()
+    {
+
+    }
+
     public function NombrePersonal($idpersonal)
     {
         $sql = "SELECT CONCAT(nombre,' ',apellidos) AS personal, foto FROM personal WHERE id_personal = $idpersonal;";
