@@ -89,11 +89,12 @@ if($datos['chk_usu']== 1)
             }
 
             header("Location: ../views/index.php");
+
             break;
         
         default:
             echo "Nivel Desconocido";
-            header("Location: ../index.html");
+            //header("Location: ../index.html");
     }
 }else{
     //echo "No activo";

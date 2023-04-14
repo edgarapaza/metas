@@ -9,6 +9,7 @@ class ValidarUsuario
 		{
 			$this->conn = new Conexion();
 			return $this->conn;
+			
 		}
 
 		function Validar($user, $pass)
@@ -45,6 +46,24 @@ class ValidarUsuario
 		{
 			$sql = "UPDATE bitacora SET horasalida = '$horasalida', tiempo = '$tiempo' WHERE idbitacora = $idbitacora";
 			$this->conn->ConsultaSin($sql);
+		}
+		//CONSULTA ZETA DEVUELVE USUARIO,NIVEL, Y ACTIVIDAD
+		function Tablas($idpersonal)
+		{
+			$sql = "SELECT nom_usu, niv_usu, chk_usu FROM avancemetas.login WHERE id_personal = $idpersonal;";
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
+		}
+		function Status($status, $idpersonal)
+		{
+			$sql = "UPDATE `avancemetas`.`login` SET `chk_usu` = $status WHERE id_personal = $idpersonal";
+			$this->conn->Consultasin($sql);
+		}
+
+		function uplevel($nivel,$idpersonal)
+		{
+			$sql = "UPDATE `avancemetas`.`login` SET `niv_usu` = $nivel WHERE `id_personal` = $idpersonal;";
+			$this->conn->Consultasin($sql);
 		}
 
 	}
