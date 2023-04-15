@@ -1,20 +1,24 @@
 <?php
-
 session_start();
 require "../models/Persona.model.php";
+require "../models/funciones.model.php";
+
 $persona = new Persona();
 $data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
 
+$funciones = new Funciones();
+$fun = $funciones->Consultar($_SESSION['personal']);
+
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / Data - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - KATARI</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -39,7 +43,7 @@ $_SESSION['inicio'];
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
-  * Template Name: NiceAdmin
+  * Template Name: Personal
   * Updated: Mar 09 2023 with Bootstrap v5.2.3
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
@@ -49,13 +53,13 @@ $_SESSION['inicio'];
 
 <body>
 
-<!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">Personal</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -354,96 +358,107 @@ $_SESSION['inicio'];
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Tables</li>
-          <li class="breadcrumb-item active">Data</li>
+          <li class="breadcrumb-item active">Dashboard</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                 <div id="mensaje"></div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
     <section class="section">
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Listado Personal</h5>
-              <!-- Table with stripped rows -->
-              <table class="table datatable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre del Trabajador</th>
-                    <th scope="col">Nivel</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Options</th>
-                    <th scope="col">Fecha</th>
-                  </tr>
-                </thead>
-                
-                <tbody>
+              <h5 class="card-title">REPORTE CORRESPONDIENTE FECHA <?php echo date("d-m-Y");?></h5>
 
+              <!-- List group with custom content -->
+              <ol class="list-group list-group-numbered">
+
+                 <?php
+                    $i = 1;
+                    while($fila = $fun->fetch_array(MYSQLI_ASSOC))
+                    {
+                      #echo $fila['idfunciones'];
+                      #echo $fila['id_personal'];
+                      #echo $fila['id_cargos'];
+                      #echo $fila['unimed'];
+                      #echo $fila['cantidad'];
+                      #echo $i;
+                    ?>
+
+                <li class="list-group-item d-flex justify-content-between align-items-start" id="<?php echo $i; ?>">
+                  <div class="ms-2 me-auto">
+                    <input type="hidden" name="idpersonal" id="idpersonal<?php echo $i; ?>" value="<?php echo $_SESSION['personal'];?>">
+                    <input type="hidden" name="idfunciones" id="idfunciones<?php echo $i; ?>" value="<?php echo $fila['idfunciones'];?>">
+                    <input type="hidden" name="unimed" id="unimed<?php echo $i; ?>" value="<?php echo $fila['unimed'];?>">
+
+                    <div class="fw-bold"><?php echo $fila['funcion'];?></div>
+                    des
+                  </div>
                   <?php
-                     include "../models/listado.model.php";
-                     $listado = new Listado();
-                     $data = $listado->ListadoPersonal();
-                     $i = 1;
-                     while($fila = $data->fetch_array(MYSQLI_ASSOC))
-                     {
+                    # $idpersonal,$idfunciones,$cantidad,$obs    $fecha,$tipo
+                    $response = $funciones->ConsultaReporte($_SESSION['personal'], $fila['idfunciones']);
+                    
+                    
+                    #echo $response['tipo'];
+                    if(!is_null($response))
+                    {
+                      
+                        echo "<span class='badge bg-success rounded-pill'>OK</span>";
                      
-                  ?>
-
-                  <tr>
-                    <th scope="row"><?php echo $i; ?></th>
-                  
-                    <td><?php  echo $fila['per'];?></td>
-                    <td>
-                      <?php
-                        #echo $fila['niv_usu'];
-                        if($fila['niv_usu'] == 1)
-                        {
-                          echo "Administrador";
-                        }
-                        if($fila['niv_usu'] == 2)
-                        {
-                          echo "Jefe de Oficina";
-                        }
-                        if($fila['niv_usu'] == 3)
-                        {
-                          echo "Personal";
-                        }
-                      ?>
-                    </td>
-                    <td>
-                      <?php
-                        if($fila['chk_usu']==1)
-                        {
-                          echo "<span class='badge bg-success'>Activado</span>";
-                        }else{
-                          echo "<span class='badge bg-danger'>Inactivo</span>";
-                        }
-                      ?>
-                    </td>
-                    <td></td>
-
-                    <td>2016-05-25</td>
-                  </tr>
-                  <?php
-                      $i++;
-                     }
+                      
+                    }
+                    else{
+                      echo "<span class='badge bg-danger rounded-pill'>FALTA</span>";
+                    }
                     
                   ?>
-                  
-                </tbody>
-              </table>
-              <!-- End Table with stripped rows -->
+
+                </li>
+                <?php
+                $i++;
+                }
+                ?>
+
+              </ol><!-- End with custom content -->
 
             </div>
           </div>
 
+        </div>
+
+        <!-- Inicio del FORMULARIO -->
+              
+        <div class="col-lg-6">
+        <form action="" >
+          <div class="card" id="reporte">
+            <div class="card-body">
+              <h5 class="card-title">Reporte</h5>
+                      <label for="" class="form-label">Cuanto avance hoy?</label>
+                    <div class="input-group mb-3">
+                      <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="" aria-label="Recibe un Numero" aria-describedby="basic-report">
+                      <span class="input-group-text" id="basic-report"><span id="miunimed"></span></span>
+                    </div>
+                    <br>
+                      <input type="hidden" name="miidpersonal" id="miidpersonal">
+                      <input type="hidden" name="miidfuncion" id="miidfuncion">
+                      <div class="col-12">
+                          <button class="btn btn-primary w-50" name="btnSaveReporte" id="btnSaveReporte" type="button">Guardar</button>
+                      </div>
+            </div>
+          </div>
+        </form>
         </div>
       </div>
     </section>
@@ -469,11 +484,10 @@ $_SESSION['inicio'];
   <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
   <script src="assets/vendor/tinymce/tinymce.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="button.js"></script>
-  <script src="checkbox.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
 
   <!-- Template Main JS File -->
+  <script src="assets/js/index.js"></script>
   <script src="assets/js/main.js"></script>
 
 </body>

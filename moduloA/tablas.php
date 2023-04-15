@@ -295,13 +295,18 @@ $_SESSION['inicio'];
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="#">
+            <a href="components-alerts.html">
               <i class="bi bi-circle"></i><span>Agregar Reporte</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="components-accordion.html">
               <i class="bi bi-circle"></i><span>Ver mis estadisticas</span>
+            </a>
+          </li>
+          <li>
+            <a href="components-breadcrumbs.html">
+              <i class="bi bi-circle"></i><span>Otros</span>
             </a>
           </li>
         </ul>
@@ -313,7 +318,7 @@ $_SESSION['inicio'];
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="nuevaActividad.php">
+            <a href="forms-elements.html">
               <i class="bi bi-circle"></i><span>Nueva Actividad</span>
             </a>
           </li>
@@ -339,7 +344,7 @@ $_SESSION['inicio'];
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="graficoPersonal.php">
+            <a href="charts-chartjs.html">
               <i class="bi bi-circle"></i><span>Avace Mensual</span>
             </a>
           </li>
@@ -370,17 +375,18 @@ $_SESSION['inicio'];
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Listado Personal</h5>
+              <h5 class="card-title">Datatables</h5>
+              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable</p>
+
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nombre del Trabajador</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Nivel</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col">check-user</th>
                     <th scope="col">Options</th>
-                    <th scope="col">Fecha</th>
                   </tr>
                 </thead>
                 
@@ -400,34 +406,30 @@ $_SESSION['inicio'];
                     <th scope="row"><?php echo $i; ?></th>
                   
                     <td><?php  echo $fila['per'];?></td>
+                    <td><?php  echo $fila['niv_usu'];?></td>
+                    
+                
                     <td>
-                      <?php
-                        #echo $fila['niv_usu'];
-                        if($fila['niv_usu'] == 1)
-                        {
-                          echo "Administrador";
-                        }
-                        if($fila['niv_usu'] == 2)
-                        {
-                          echo "Jefe de Oficina";
-                        }
-                        if($fila['niv_usu'] == 3)
-                        {
-                          echo "Personal";
-                        }
+                      <?php  
+                      echo $fila['chk_usu'];
+                      if($fila['chk_usu']==1)
+                      {
+                        echo "<input type='checkbox' checked='true' id='mi-checkbox'>";
+                      }else{
+                        echo "<input type='checkbox' id='mi-checkbox'>";
+                      }
+                      
                       ?>
                     </td>
                     <td>
-                      <?php
-                        if($fila['chk_usu']==1)
-                        {
-                          echo "<span class='badge bg-success'>Activado</span>";
-                        }else{
-                          echo "<span class='badge bg-danger'>Inactivo</span>";
-                        }
-                      ?>
-                    </td>
-                    <td></td>
+
+                      <label for="mi-checkbox" onclick="activarCheckbox()">
+                        <a    href="../controllers/tablas.controller.php?idper=<?php echo  $fila['id_personal']; ?>">
+                                <span>cambiar estado  </span>
+                        </a>
+                        </label>
+                        
+                    </td>                    
 
                     <td>2016-05-25</td>
                   </tr>
@@ -453,9 +455,15 @@ $_SESSION['inicio'];
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Ing. Edgar Apaza Choque 2023</span></strong>. Derechos reservados
+      &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
     </div>
-
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
   </footer><!-- End Footer -->
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>

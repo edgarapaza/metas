@@ -43,7 +43,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
-  * Template Name: NiceAdmin
+  * Template Name: Personal
   * Updated: Mar 09 2023 with Bootstrap v5.2.3
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
@@ -59,7 +59,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">Personal</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -299,18 +299,13 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Agregar Reporte</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Ver mis estadisticas</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Otros</span>
             </a>
           </li>
         </ul>
@@ -322,7 +317,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
+            <a href="nuevaActividad.php">
               <i class="bi bi-circle"></i><span>Nueva Actividad</span>
             </a>
           </li>
@@ -348,7 +343,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="charts-chartjs.html">
+            <a href="graficoPersonal.php">
               <i class="bi bi-circle"></i><span>Avace Mensual</span>
             </a>
           </li>
@@ -364,8 +359,6 @@ $fun = $funciones->Consultar($_SESSION['personal']);
 
     <div class="pagetitle">
       <h1>Dashboard</h1>
-
-
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -373,6 +366,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </ol>
       </nav>
     </div><!-- End Page Title -->
+
      <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
                  <div id="mensaje"></div>
@@ -386,7 +380,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">REPORTAR</h5>
+              <h5 class="card-title">REPORTE CORRESPONDIENTE FECHA <?php echo date("d-m-Y");?></h5>
 
               <!-- List group with custom content -->
               <ol class="list-group list-group-numbered">
@@ -410,7 +404,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
                     <input type="hidden" name="unimed" id="unimed<?php echo $i; ?>" value="<?php echo $fila['unimed'];?>">
 
                     <div class="fw-bold"><?php echo $fila['funcion'];?></div>
-                    des
+                    <em>Descripcion</em>
                   </div>
                   <?php
                     # $idpersonal,$idfunciones,$cantidad,$obs    $fecha,$tipo
@@ -474,7 +468,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Archivo</span></strong>. Derechos reservados
+      &copy; Copyright <strong><span>Ing. Edgar Apaza Choque 2023</span></strong>. Derechos reservados
     </div>
 
   </footer><!-- End Footer -->
