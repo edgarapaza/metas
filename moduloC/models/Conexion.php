@@ -10,7 +10,7 @@ class Conexion
 	    $host = "localhost";
         $user = "root";
         $pass = "jersson.zeta";
-        $db   = "avancemetas";
+        $db   = "avancemetas";  
 
         $this->conn = new mysqli($host, $user, $pass, $db);
 
