@@ -8,7 +8,7 @@ $_SESSION['inicio'];
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8">
@@ -400,6 +400,10 @@ $_SESSION['inicio'];
                     <th scope="row"><?php echo $i; ?></th>
                   
                     <td><?php  echo $fila['per'];?></td>
+                    //cambio de nivel de usuario
+                    <td><?php  echo $fila['niv_usu'];?></td>
+                    
+                
                     <td>
                       <?php
                         #echo $fila['niv_usu'];
