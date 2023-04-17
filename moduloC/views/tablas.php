@@ -396,18 +396,22 @@ $_SESSION['inicio'];
                      include "../models/listado.model.php";
                      $listado = new Listado();
                      $data = $listado->ListadoPersonal();
+                     
                      $i = 1;
                      while($fila = $data->fetch_array(MYSQLI_ASSOC))
                      {
-                     
+                      $nivel =  $fila['niv_usu'];
                   ?>
 
                   <tr>
                     <th scope="row"><?php echo $i; ?></th>
                   
                     <td><?php  echo $fila['per'];?></td>
-                    //cambio de nivel de usuario
-                    <td><?php  echo $fila['niv_usu'];?></td>
+                    <!--cambio de nivel de usuario-->
+                    <!--<td><input type="number" name="points" min = "0" max= "3" value = ></td>-->
+                    <td><?php echo "<input type='number' name = 'points' min='0' max='3' value = '$nivel'>" ?></td>
+
+                    
                     
                 
                     <td>
