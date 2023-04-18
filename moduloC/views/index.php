@@ -1,10 +1,10 @@
-<?php
+<?php/*
 session_start();
 require "../models/Persona.model.php";
 $persona = new Persona();
 $data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
-?>
+?>*/
 <!DOCTYPE html>
 <html lang="es">
 
