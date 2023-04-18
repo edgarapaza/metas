@@ -35,7 +35,7 @@ class Personal
 
 	public function MostrarPersonalUno($idpersonal)
 	{
-		$sql = "SELECT id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,f_creacion,DNI FROM personal WHERE id_personal = " . $idpersonal;
+		$sql = "SELECT id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI FROM personal WHERE id_personal = " . $idpersonal;
 		$response = $this->conn->ConsultaArray($sql);
 		return $response;
 	}

@@ -11,22 +11,35 @@ class Funciones
 		return $this->conn;
 	}
 
-	public function Guardar($id_personal,$id_responsabilidades,$f_reportes,$cantidad_avance)
+	function Duplicado($idpersonal,$funcion,$unidadMedida,$cantidad,$frecuencia)
+
 	{
-		
-		$sql = "INSERT INTO reportes VALUES (null,'$id_personal','$id_responsabilidades','$f_reportes','$cantidad_avance');";
+		$sql = "SELECT idfunciones FROM funciones WHERE id_personal = '$idpersonal' AND funcion = '$funcion' AND unimed = '$unidadMedida' AND cantidad = '$cantidad' AND frecuencia ='$frecuencia'";
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
+	}
+
+	function Guardar($id_personal,$funcion,$unimed,$cantidad,$frecuencia)
+	{
+		$fecha = date("Y-m-d H:i:s");
+		$id_cargos = 1;
+		$sql = "INSERT INTO funciones VALUES (null,'$id_personal','$id_cargos','$funcion','$unimed','$cantidad','$fecha','$fecha','$frecuencia');";
 		$this->conn->ConsultaSin($sql);
 		
 	}
 
-	public function Modificar()
+	function ConsultaReporte($idpersonal, $idfunciones)
 	{
+		$fecha = date("Y-m-d");
+		$sql ="SELECT idreporte, tipo FROM reportes WHERE idpersonal = $idpersonal AND idfunciones = $idfunciones AND fecha LIKE '$fecha%';";
 		
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
 	}
 
-	public function Consultar()
+	function Consultar($idpersonal)
 	{
-		$sql = "SELECT id_acciones, id_personal, id_cargos, funcion, unimed,cantidad FROM funciones";
+		$sql = "SELECT idfunciones,id_personal,id_cargos,funcion,unimed,cantidad FROM funciones WHERE id_personal = ". $idpersonal;
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}

@@ -1,10 +1,18 @@
-<?php/*
+<?php
 session_start();
 require "../models/Persona.model.php";
+require "../models/funciones.model.php";
+
 $persona = new Persona();
 $data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
-?>*/
+
+
+$funciones = new Funciones();
+$fun = $funciones->Consultar($_SESSION['personal']);
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -37,7 +45,7 @@ $_SESSION['inicio'];
   <link href="assets/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
-  * Template Name: NiceAdmin
+  * Template Name: Personal
   * Updated: Mar 09 2023 with Bootstrap v5.2.3
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
@@ -53,7 +61,7 @@ $_SESSION['inicio'];
     <div class="d-flex align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">NiceAdmin</span>
+        <span class="d-none d-lg-block">Personal</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -293,18 +301,13 @@ $_SESSION['inicio'];
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="components-alerts.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Agregar Reporte</span>
             </a>
           </li>
           <li>
-            <a href="components-accordion.html">
+            <a href="#">
               <i class="bi bi-circle"></i><span>Ver mis estadisticas</span>
-            </a>
-          </li>
-          <li>
-            <a href="components-breadcrumbs.html">
-              <i class="bi bi-circle"></i><span>Otros</span>
             </a>
           </li>
         </ul>
@@ -316,7 +319,7 @@ $_SESSION['inicio'];
         </a>
         <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="forms-elements.html">
+            <a href="nuevaActividad.php">
               <i class="bi bi-circle"></i><span>Nueva Actividad</span>
             </a>
           </li>
@@ -329,8 +332,8 @@ $_SESSION['inicio'];
         </a>
         <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="tables-general.html">
-              <i class="bi bi-circle"></i><span>General</span>
+            <a href="tablas.php">
+              <i class="bi bi-circle"></i><span>Usuarios</span>
             </a>
           </li>
         </ul>
@@ -342,7 +345,7 @@ $_SESSION['inicio'];
         </a>
         <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="charts-chartjs.html">
+            <a href="graficoPersonal.php">
               <i class="bi bi-circle"></i><span>Avace Mensual</span>
             </a>
           </li>
@@ -358,7 +361,6 @@ $_SESSION['inicio'];
 
     <div class="pagetitle">
       <h1>Dashboard</h1>
-
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -367,37 +369,70 @@ $_SESSION['inicio'];
       </nav>
     </div><!-- End Page Title -->
 
+     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-1"></i>
+                 <div id="mensaje"></div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+
     <section class="section">
       <div class="row">
         <div class="col-lg-6">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">REPORTAR</h5>
+              <h5 class="card-title">REPORTE CORRESPONDIENTE FECHA <?php echo date("d-m-Y");?></h5>
 
               <!-- List group with custom content -->
               <ol class="list-group list-group-numbered">
-                <li class="list-group-item d-flex justify-content-between align-items-start" id="1">
+
+                 <?php
+                    $i = 1;
+                    while($fila = $fun->fetch_array(MYSQLI_ASSOC))
+                    {
+                      #echo $fila['idfunciones'];
+                      #echo $fila['id_personal'];
+                      #echo $fila['id_cargos'];
+                      #echo $fila['unimed'];
+                      #echo $fila['cantidad'];
+                      #echo $i;
+                    ?>
+
+                <li class="list-group-item d-flex justify-content-between align-items-start" id="<?php echo $i; ?>">
                   <div class="ms-2 me-auto">
-                    <div class="fw-bold">Desarrollo de software</div>
-                    des
+                    <input type="hidden" name="idpersonal" id="idpersonal<?php echo $i; ?>" value="<?php echo $_SESSION['personal'];?>">
+                    <input type="hidden" name="idfunciones" id="idfunciones<?php echo $i; ?>" value="<?php echo $fila['idfunciones'];?>">
+                    <input type="hidden" name="unimed" id="unimed<?php echo $i; ?>" value="<?php echo $fila['unimed'];?>">
+
+                    <div class="fw-bold"><?php echo $fila['funcion'];?></div>
+                    <em>Descripcion</em>
                   </div>
-                  <span class="badge bg-danger rounded-pill">Falta</span>
+                  <?php
+                    # $idpersonal,$idfunciones,$cantidad,$obs    $fecha,$tipo
+                    $response = $funciones->ConsultaReporte($_SESSION['personal'], $fila['idfunciones']);
+                    
+                    
+                    #echo $response['tipo'];
+                    if(!is_null($response))
+                    {
+                      
+                        echo "<span class='badge bg-success rounded-pill'>OK</span>";
+                     
+                      
+                    }
+                    else{
+                      echo "<span class='badge bg-danger rounded-pill'>FALTA</span>";
+                    }
+                    
+                  ?>
+
                 </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start" id="2">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Ingreso a Base de Datos</div>
-                    des
-                  </div>
-                  <span class="badge bg-success rounded-pill">OK</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start" id="3">
-                  <div class="ms-2 me-auto">
-                    <div class="fw-bold">Revision de Escrituras</div>
-                    des
-                  </div>
-                  <span class="badge bg-success rounded-pill">OK</span>
-                </li>
+                <?php
+                $i++;
+                }
+                ?>
+
               </ol><!-- End with custom content -->
 
             </div>
@@ -405,26 +440,27 @@ $_SESSION['inicio'];
 
         </div>
 
+        <!-- Inicio del FORMULARIO -->
+              
         <div class="col-lg-6">
-
-          <div class="card">
+        <form action="" >
+          <div class="card" id="reporte">
             <div class="card-body">
               <h5 class="card-title">Reporte</h5>
-                      <label for="yourPassword" class="form-label">Cuanto avance hoy?</label>
+                      <label for="" class="form-label">Cuanto avance hoy?</label>
                     <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="" aria-label="Recibe un Numero" aria-describedby="basic-report">
-                      <span class="input-group-text" id="basic-report">Porcentaje %</span>
+                      <input type="text" name="cantidad" id="cantidad" class="form-control" placeholder="" aria-label="Recibe un Numero" aria-describedby="basic-report">
+                      <span class="input-group-text" id="basic-report"><span id="miunimed"></span></span>
                     </div>
                     <br>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Guardar</button>
-                    </div>
-
-
-
+                      <input type="hidden" name="miidpersonal" id="miidpersonal">
+                      <input type="hidden" name="miidfuncion" id="miidfuncion">
+                      <div class="col-12">
+                          <button class="btn btn-primary w-50" name="btnSaveReporte" id="btnSaveReporte" type="button">Guardar</button>
+                      </div>
             </div>
           </div>
-
+        </form>
         </div>
       </div>
     </section>
@@ -434,7 +470,7 @@ $_SESSION['inicio'];
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Archivo</span></strong>. Derechos reservados
+      &copy; Copyright <strong><span>Ing. Edgar Apaza Choque 2023</span></strong>. Derechos reservados
     </div>
 
   </footer><!-- End Footer -->
@@ -453,8 +489,8 @@ $_SESSION['inicio'];
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
   <script src="assets/js/index.js"></script>
+  <script src="assets/js/main.js"></script>
 
 </body>
 

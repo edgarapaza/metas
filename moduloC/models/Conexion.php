@@ -14,8 +14,8 @@ class Conexion
 
         $this->conn = new mysqli($host, $user, $pass, $db);
 
-        if ($this->conn->connect_errno) {
-            echo "Error al contenctar a MySQL: (" . $this->conn->connect_errno . ") " . $this->conn->connect_error;
+        if ($this->conn->connect_error) {
+            echo "Error al contenctar a MySQL: (" . $this->conn->connect_error . ") " . $this->conn->connect_error;
             exit();
         }
 

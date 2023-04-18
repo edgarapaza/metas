@@ -1,5 +1,5 @@
 <?php
-require_once("Conexion.php");
+require "Conexion.php";
 
 class Reportes
 {
@@ -7,24 +7,18 @@ class Reportes
 
 	function __construct()
 	{
-		$link = new Conexionnn();
-		$this->conn = $link->Conectar();
+		$this->conn = new Conexion();
 		return $this->conn;
 	}
 
 
-	public function Guardar($id_personal, $id_acciones, $cantidad)
+	public function Guardar($idpersonal, $idfunciones, $cantidad)
 	{
-		$fecha = date('Y-m-d H:i:s');
-		$sql = "INSERT INTO reportes (id_reportes, id_personal, id_acciones, f_reportes, cantidad) VALUES (null, '$id_personal', '$id_acciones', '$fecha', '$cantidad');";
-
-		if(!$this->conn->query($sql)){
-			echo "Error: " . mysqli_error($this->conn);
-			exit();
-		}
-
-		echo "Guardado correctamente";
-	
+		$fecha = date("Y-m-d H:i:s");
+		$tipo = 1;
+		$sql = "INSERT INTO reportes VALUES (null,'$idpersonal','$idfunciones','$fecha',1,'$cantidad',null)";
+		echo $sql;
+		$this->conn->ConsultaSin($sql);
 	}
 
 	public function Modificar($idreportes, $cantidad)
