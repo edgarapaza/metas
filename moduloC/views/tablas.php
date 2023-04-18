@@ -409,10 +409,12 @@ $_SESSION['inicio'];
                     <td><?php  echo $fila['per'];?></td>
                     <!--cambio de nivel de usuario-->
                     <!--<td><input type="number" name="points" min = "0" max= "3" value = ></td>-->
-                    <td><?php echo "<input type='number' name = 'points' min='0' max='3' value = '$nivel'>" ?></td>
-
-                    
-                    
+                    <td>
+                      <a href="../controllers/nivel.controller.php?idper=<?php echo $fila['id_personal']; ?>">
+                      cambio
+                      <?php echo $fila['niv_usu']; ?>
+                      </a>
+                    </td>
                 
                     <td>
                       <?php  
@@ -420,6 +422,7 @@ $_SESSION['inicio'];
                       if($fila['chk_usu']==1)
                       {
                         echo "<input type='checkbox' checked='true' id='mi-checkbox'>";
+                        
                       }else{
                         echo "<input type='checkbox' id='mi-checkbox'>";
                       }

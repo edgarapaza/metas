@@ -61,7 +61,7 @@ class ValidarUsuario
 		}
 
 		//variable $nivel recibe 1,2 o 3. funcion cambio de nivel no devuelve nada
-		function uplevel($nivel,$idpersonal)
+		function Uplevel($nivel,$idpersonal)
 		{
 			$sql = "UPDATE `avancemetas`.`login` SET `niv_usu` = $nivel WHERE `id_personal` = $idpersonal;";
 			$this->conn->Consultasin($sql);
