@@ -398,12 +398,7 @@ $_SESSION['inicio'];
 
                   <tr>
                     <th scope="row"><?php echo $i; ?></th>
-                  
-                    <td><?php  echo $fila['per'];?></td>
-                    //cambio de nivel de usuario
-                    <td><?php  echo $fila['niv_usu'];?></td>
-                    
-                
+                    <td><?php  echo $fila['per'];?></td>                
                     <td>
                       <?php
                         #echo $fila['niv_usu'];

@@ -343,6 +343,16 @@ $data = $personal->MostrarPersonalUno($_SESSION['admin']);
               <i class="bi bi-circle"></i><span>Agregar Personal</span>
             </a>
           </li>
+          <li>
+            <a href="tablas.php">
+              <i class="bi bi-circle"></i><span>Estado Personal</span>
+            </a>
+          </li>
+          <li>
+            <a href="funciones.php">
+              <i class="bi bi-circle"></i><span>Agregar Funciones</span>
+            </a>
+          </li>
         </ul>
       </li><!-- End Components Nav -->
 

@@ -1,64 +1,94 @@
-<?php
-require("../moduloA/models/areas.model.php");
-require("../moduloA/models/oficinas.model.php");
+<?php include_once("header.php"); ?>
 
-$areas = new Areas();
-$data = $areas->Consultar();
+  <main id="main" class="main">
 
-$oficinas = new Oficinas();
-$data1 = $oficinas->Consultar();
-?>
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
 
+    <section class="section">
+      <div class="row">
+        <div class="col-lg-10">
 
-<div class="container">
-		
-	<h1>Personal</h1>
-		<form action="controllers/personal.controller.php" method="POST" role="form">
-			<legend>Completa el formulario</legend>
-		
-			<div class="form-group">
-				<label for="">Nombre</label>
-				<input type="text" class="form-control" id="" name="nombre" placeholder="nombre">
-			</div>
-			<div class="form-group">
-				<label for="">Apellidos:</label>
-				<input type="text" class="form-control" id="" name="apellidos" placeholder="apellidos">
-			</div>
-			<div><label>sexo</label>
-			<div id="gender" class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-			<input type="radio" name="sexo" value="masculino"> &nbsp; Masculino &nbsp;
-			</label>
-			<label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-			<input type="radio" name="sexo" value="femenino"> Femenino
-			</label>
-			</div>
-			</div>
-		
-			<div class="form-group">
-				<label for="">telefono:</label>
-				<input type="text" class="form-control" id="" name="telefono" placeholder="telefono">
-			</div>
-			<div class="form-group">
-				<label for="">fecha de nacimiento:</label>
-				<input type="date" class="form-control" id="" name="fecha_nacimiento" placeholder="fecha_nac">
-			</div>
-			<div class="form-group">
-				<label for="">email:</label>
-				<input type="text" class="form-control" id="" name="email" placeholder="email">
-			</div>
-			<div class="form-group">
-				<label for="">foto:</label>
-				<input type="file" class="form-control" id="" name="foto" placeholder="foto">
-			</div>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">AGREGAR PERSONAL</h5>
+			  	<form action="controllers/personal.controller.php" method="POST" role="form">
+									
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label" for="">Nombre</label>
+						<div class="col-sm-8">
+							<input type="text" required class="form-control" id="" name="nombre">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label" for="">Apellidos:</label>
+						<div class="col-sm-8">
+							<input type="text" required class="form-control" id="" name="apellidos">
+						</div>
+					</div>
+					<fieldset class="row mb-3">
+						<legend class="col-form-label col-sm-2 pt-0">Sexo:</legend>
+						<div class="col-sm-10">
+							<div class="form-check">
+								<input type="radio" name="sexo" class="form-check-input" value="masculino">
+								<label class="form-check-label" for="Sexo"> Masculino</label>
+							</div>
+							<div class="form-check">
+								<input type="radio" name="sexo" class="form-check-input" value="femenino">
+								<label class="form-check-label" for="Sexo"> Femenino</label>
+							</div>
+						</div>
+					</fieldset>
+								
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label" for="">Telefono:</label>
+						<div class="col-sm-3">
+							<input type="text" required class="form-control" id="" name="telefono">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="fecha_nacimiento" class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
+						<div class="col-sm-2">
+							<input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label" for="">Email:</label>
+						<div class="col-sm-6">
+							<input type="email" required class="form-control" id="" name="email" value="a@a.com">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label">Foto:</label>
+						<div class="col-sm-6">
+							<input type="file" class="form-control" id="" name="foto">
+						</div>
+					</div>
 
-			<div class="form-group">
-				<label for="">DNI:</label>
-				<input type="text" class="form-control" id="" name="DNI" placeholder="DNI">
-			</div>
+					<div class="row mb-3">
+						<label class="col-sm-2 col-form-label">DNI:</label>
+						<div class="col-sm-2">
+							<input type="text" required class="form-control" id="" name="DNI">
+						</div>
+					</div>
 
-			<button type="submit" class="btn btn-primary">Guardar</button>
+					<button type="submit" class="btn btn-primary">Guardar</button>
 
-		</form>
+				</form>
+            </div>
+          </div>
 
-	</div>
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+<?php include_once("footer.php"); ?>

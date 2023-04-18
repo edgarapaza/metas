@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `avancemetas` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci */;
+CREATE DATABASE  IF NOT EXISTS `avancemetas` /*!40100 DEFAULT */;
 USE `avancemetas`;
 -- MySQL dump 10.13  Distrib 8.0.32, for Win64 (x86_64)
 --
@@ -23,17 +23,17 @@ USE `avancemetas`;
 
 DROP TABLE IF EXISTS `areas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `areas` (
   `id_areas` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `descripcion` text CHARACTER SET utf8mb4,
+  `nombre` varchar(50) NOT NULL,
+  `descripcion` text 
   `idoficina` int(11) NOT NULL,
   `id_metas` int(11) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   `f_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_areas`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asignacionpersonal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `asignacionpersonal` (
   `idasignacion` int(11) NOT NULL AUTO_INCREMENT,
   `idoficina` int(11) NOT NULL,
@@ -61,11 +61,11 @@ CREATE TABLE `asignacionpersonal` (
   `idpersonal` int(11) DEFAULT NULL,
   `fecInicioCargo` date DEFAULT NULL,
   `fecFinCargo` date DEFAULT NULL,
-  `documento` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `documento` varchar(100) DEFAULT NULL,
   `fecCreate` datetime DEFAULT NULL,
   `fecUpdtae` datetime DEFAULT NULL,
   PRIMARY KEY (`idasignacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,19 +84,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asistencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `asistencia` (
   `idasistencia` int(11) NOT NULL AUTO_INCREMENT,
   `idpersonal` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `tipo` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo` varchar(45) NOT NULL,
   `horasalida` time DEFAULT NULL,
   `tiempouso` double DEFAULT NULL,
   PRIMARY KEY (`idasistencia`),
   KEY `fk_asistencia_personal_idx` (`idpersonal`),
   CONSTRAINT `fk_asistencia_personal` FOREIGN KEY (`idpersonal`) REFERENCES `personal` (`id_personal`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,19 +115,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `bitacora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `bitacora` (
   `idbitacora` int(11) NOT NULL AUTO_INCREMENT,
   `idpersonal` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `tipo` varchar(45) COLLATE utf8_spanish2_ci NOT NULL,
+  `tipo` varchar(45) NOT NULL,
   `horasalida` time DEFAULT NULL,
   `tiempo` double DEFAULT NULL,
   PRIMARY KEY (`idbitacora`),
   KEY `fk_bitacora_personal_idx` (`idpersonal`),
   CONSTRAINT `fk_bitacora_personal` FOREIGN KEY (`idpersonal`) REFERENCES `personal` (`id_personal`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,16 +146,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `cargos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `cargos` (
   `id_cargos` int(11) NOT NULL AUTO_INCREMENT,
   `id_oficina` int(11) NOT NULL,
-  `nombre_cargo` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+  `nombre_cargo` varchar(150) NOT NULL,
   `fec_creacion` datetime DEFAULT NULL,
   PRIMARY KEY (`id_cargos`),
   KEY `fk_oficina_cargos_idx` (`id_oficina`),
   CONSTRAINT `fk_oficina_cargos` FOREIGN KEY (`id_oficina`) REFERENCES `oficinas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,18 +174,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `datospersonal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `datospersonal` (
   `id_adpersonal` int(11) NOT NULL AUTO_INCREMENT,
-  `profesion` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `profesion` varchar(50) DEFAULT NULL,
   `tiempo_servicio` int(11) DEFAULT NULL,
-  `condicion` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `seguro_social` varchar(20) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `grupo_sanguineo` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `condicion` varchar(20) DEFAULT NULL,
+  `seguro_social` varchar(20) DEFAULT NULL,
+  `grupo_sanguineo` varchar(10) DEFAULT NULL,
   `f_ingreso` date DEFAULT NULL,
   `f_deceso` date DEFAULT NULL,
   PRIMARY KEY (`id_adpersonal`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,19 +204,19 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `funciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `funciones` (
   `idfunciones` int(11) NOT NULL AUTO_INCREMENT,
   `id_personal` int(11) NOT NULL,
   `id_cargos` int(11) DEFAULT NULL,
-  `funcion` varchar(150) CHARACTER SET latin1 NOT NULL,
-  `unimed` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `funcion` varchar(150) NOT NULL,
+  `unimed` varchar(20) NOT NULL,
   `cantidad` double NOT NULL,
   `fecha_creacion` datetime DEFAULT CURRENT_TIMESTAMP,
   `fecha_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `frecuencia` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `frecuencia` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idfunciones`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,15 +235,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `gerencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `gerencia` (
   `idgerencia` int(11) NOT NULL AUTO_INCREMENT,
   `idinstitucion` int(11) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`idgerencia`),
   KEY `fk_gerencia_institucion_idx` (`idinstitucion`),
   CONSTRAINT `fk_gerencia_institucion` FOREIGN KEY (`idinstitucion`) REFERENCES `institucion` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,24 +262,24 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `institucion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `institucion` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_inst` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `direccion` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `telefono` varchar(30) CHARACTER SET utf8mb4 NOT NULL,
-  `RUC` char(11) CHARACTER SET utf8mb4 NOT NULL,
-  `email` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
-  `p_web` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+  `nombre_inst` varchar(50) NOT NULL,
+  `direccion` varchar(50) NOT NULL,
+  `telefono` varchar(30) NOT NULL,
+  `RUC` char(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `p_web` varchar(50) NOT NULL,
   `fecha_creacion_archivo` date NOT NULL,
-  `n_resolucion` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+  `n_resolucion` varchar(50) NOT NULL,
   `id_metas` int(11) NOT NULL,
   `fecha_create` datetime NOT NULL,
   `fecha_update` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_metas` (`id_metas`),
   CONSTRAINT `institucion_ibfk_1` FOREIGN KEY (`id_metas`) REFERENCES `metas` (`id_metas`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -298,13 +298,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `jefe_area`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `jefe_area` (
   `id_jefearea` int(11) NOT NULL AUTO_INCREMENT,
   `id_personal` int(11) DEFAULT NULL,
   `id_areas` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_jefearea`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -323,7 +323,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `login` (
   `log_usu` int(10) NOT NULL,
   `id_personal` int(11) NOT NULL,
@@ -334,7 +334,7 @@ CREATE TABLE `login` (
   PRIMARY KEY (`log_usu`),
   UNIQUE KEY `log_usu_UNIQUE` (`log_usu`),
   KEY `id_personal` (`id_personal`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -353,14 +353,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas` (
   `id_metas` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_meta` varchar(150) CHARACTER SET utf8mb4 NOT NULL,
+  `nombre_meta` varchar(150) NOT NULL,
   `programado` double NOT NULL,
-  `unidad_medida` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
+  `unidad_medida` varchar(50) NOT NULL,
   PRIMARY KEY (`id_metas`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -379,7 +379,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `metas_areas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `metas_areas` (
   `id_metas_areas` int(11) NOT NULL AUTO_INCREMENT,
   `id_meta` int(11) DEFAULT NULL,
@@ -387,7 +387,7 @@ CREATE TABLE `metas_areas` (
   `fecha_reporte` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cantidad_avance` double DEFAULT NULL,
   PRIMARY KEY (`id_metas_areas`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,18 +406,18 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `oficinas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `oficinas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre_of` varchar(60) CHARACTER SET utf8mb4 NOT NULL,
-  `sigla` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `nombre_of` varchar(60) NOT NULL,
+  `sigla` varchar(10) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   `f_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_metas` int(11) DEFAULT NULL,
   `id_institucion` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nombre_of_UNIQUE` (`nombre_of`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -436,21 +436,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `personal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `personal` (
   `id_personal` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `apellidos` varchar(100) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `sexo` varchar(10) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `telefono` varchar(15) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `apellidos` varchar(100) DEFAULT NULL,
+  `sexo` varchar(10) DEFAULT NULL,
+  `telefono` varchar(15) DEFAULT NULL,
   `fecha_nac` date DEFAULT NULL,
-  `email` varchar(80) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `DNI` char(8) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `foto` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `email` varchar(80) DEFAULT NULL,
+  `DNI` char(8) DEFAULT NULL,
+  `foto` varchar(200) DEFAULT NULL,
   `f_creacion` datetime DEFAULT NULL,
   `f_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_personal`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -469,7 +469,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `reportes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `reportes` (
   `idreporte` int(11) NOT NULL AUTO_INCREMENT,
   `idpersonal` int(11) NOT NULL,
@@ -477,9 +477,9 @@ CREATE TABLE `reportes` (
   `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `tipo` tinyint(4) NOT NULL DEFAULT '0',
   `cantidad` double NOT NULL DEFAULT '0',
-  `obs` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `obs` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`idreporte`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -498,15 +498,15 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `subgerencia`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8 */;
 CREATE TABLE `subgerencia` (
   `idsubgerencia` int(11) NOT NULL AUTO_INCREMENT,
   `idgerencia` int(11) NOT NULL,
-  `nombre` varchar(100) COLLATE utf8_spanish2_ci NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   PRIMARY KEY (`idsubgerencia`),
   KEY `fk_subgerencia_gerencia_idx` (`idgerencia`),
   CONSTRAINT `fk_subgerencia_gerencia` FOREIGN KEY (`idgerencia`) REFERENCES `gerencia` (`idgerencia`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
