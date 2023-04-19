@@ -36,7 +36,7 @@ class Funciones
 		$data = $this->conn->ConsultaArray($sql);
 		return $data;
 	}
-
+//utilizar esta funcion para la pagina estadisticas
 	function Consultar($idpersonal)
 	{
 		$sql = "SELECT idfunciones,id_personal,id_cargos,funcion,unimed,cantidad FROM funciones WHERE id_personal = ". $idpersonal;
