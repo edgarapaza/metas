@@ -1,11 +1,37 @@
 <?php
-SESSION_START();
+session_start();
+require "../models/Persona.model.php";
+require "../models/funciones.model.php";
 
+$persona = new Persona();
+$data = $persona->MostrarPersona($_SESSION['personal']);
+$_SESSION['inicio'];
 
+$funciones = new Funciones();
+$fun = $funciones->Consultar1($_SESSION['personal']);
+//segun id funciones guardara y pasara para imprimir cada funcion del personal y su progreso si se agrega o cambia, se cambia las variables
+//variables destinadas a la tabla funciones 19/04/23
+while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
+  if($fila['idfunciones']==3){
+    $desarrollo = $fila['funcion'];
+    $porcentaje = $fila['unimed'];
+    $cantidad1 = $fila['cantidad'];
+    $fecha1 = $fila['fecha_creacion'];
+  }
+  if($fila['idfunciones']==4){
+    $ingresoDB = $fila['funcion'];
+    $numIngreso = $fila['unimed'];
+    $cantidad2 = $fila['cantidad'];
+    $fecha2 = $fila['fecha_creacion'];
+  }
+  if($fila['idfunciones']==5){
+    $revision = $fila['funcion'];
+    $numRevision = $fila['unimed'];
+    $cantidad3 = $fila['cantidad'];
+    $fecha3 = $fila['fecha_creacion'];
+  }
 
-
-
-
+}
 ?>
 
 
@@ -398,16 +424,18 @@ SESSION_START();
                   </ul>
                 </div>
 <!--Aqui LLAMAR LOS DATOS DE ESCRITURAS, DESARROLLO, ASISTENCIA-->
+
+
                 <div class="card-body">
-                  <h5 class="card-title">Desarrollo<span>| Hoy</span></h5>
+                  <h5 class="card-title"><?php echo $desarrollo; ?> <span>| Hoy</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
-                      <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6>% <?php echo $cantidad1; ?></h6>
+                      <span class="text-success small pt-1 fw-bold"><?php echo $porcentaje;?></span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
                   </div>
@@ -434,15 +462,15 @@ SESSION_START();
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Escrituras <span>| Hoy</span></h5>
+                  <h5 class="card-title"><?php echo $ingresoDB; ?> <span>| Hoy</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
-                      <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6><?php echo $cantidad2; ?></h6>
+                      <span class="text-success small pt-1 fw-bold"><?php echo $numIngreso; ?></span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
                   </div>
@@ -470,15 +498,15 @@ SESSION_START();
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title">Asistencia <span>| Este mes</span></h5>
+                  <h5 class="card-title"><?php echo $revision; ?><span>| Este mes</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
-                      <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                      <h6><?php echo $cantidad3; ?></h6>
+                      <span class="text-danger small pt-1 fw-bold"><?php echo $numRevision; ?></span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>
                   </div>
@@ -487,6 +515,7 @@ SESSION_START();
               </div>
 
             </div><!-- End Customers Card -->
+          
 
             <!-- Reports -->
             <div class="col-12">
@@ -515,14 +544,14 @@ SESSION_START();
                     document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
+                          name: '<?php echo $desarrollo?>',
+                          data: [<?php echo $cantidad1?>, 40, 28, 51, 42, 82, 56],
                         }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
+                          name: '<?php echo $ingresoDB?>',
+                          data: [<?php echo $cantidad2?>, 32, 45, 32, 34, 52, 41]
                         }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
+                          name: '<?php echo $revision?>',
+                          data: [<?php echo $cantidad3?>, 11, 32, 18, 9, 24, 11]
                         }],
                         chart: {
                           height: 350,
@@ -541,7 +570,7 @@ SESSION_START();
                             shadeIntensity: 1,
                             opacityFrom: 0.3,
                             opacityTo: 0.4,
-                            stops: [0, 90, 100]
+                            stops: [0, 90, 300]
                           }
                         },
                         dataLabels: {
@@ -599,7 +628,7 @@ SESSION_START();
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Budget Report <span>| This Month</span></h5>
+              <h5 class="card-title">Alcance de reportes mensuales <span>| This Month</span></h5>
 
               <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
 
@@ -607,33 +636,34 @@ SESSION_START();
                 document.addEventListener("DOMContentLoaded", () => {
                   var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
                     legend: {
-                      data: ['Allocated Budget', 'Actual Spending']
+                      data: ['META o desarrolo asignado', '<?php echo $desarrollo; ?> actual']
                     },
                     radar: {
                       // shape: 'circle',
-                      indicator: [{
-                          name: 'Sales',
-                          max: 6500
+                      indicator: [
+                        {
+                          name: 'Mas cosas...',
+                          max: 650
                         },
                         {
-                          name: 'Administration',
-                          max: 16000
+                          name: '<?php echo $desarrollo; ?>',
+                          max: 100
                         },
                         {
-                          name: 'Information Technology',
-                          max: 30000
+                          name: 'Mas cosas...',
+                          max: 300
                         },
                         {
-                          name: 'Customer Support',
-                          max: 38000
+                          name: '<?php echo $ingresoDB; ?>',
+                          max: 500
                         },
                         {
-                          name: 'Development',
-                          max: 52000
+                          name: 'Mas cosas...',
+                          max: 500
                         },
                         {
-                          name: 'Marketing',
-                          max: 25000
+                          name: '<?php echo $revision; ?>',
+                          max: 500
                         }
                       ]
                     },
@@ -641,13 +671,14 @@ SESSION_START();
                       name: 'Budget vs spending',
                       type: 'radar',
                       data: [{
-                          value: [4200, 3000, 20000, 35000, 50000, 18000],
-                          name: 'Allocated Budget'
+                          value: [420, 30, 200, 350, 500, 180],
+                          name: 'META o desarrolo asignado'
                         },
                         {
-                          value: [5000, 14000, 28000, 26000, 42000, 21000],
-                          name: 'Actual Spending'
+                          value: [500, <?php echo $cantidad1; ?>, 280, <?php echo $cantidad2; ?>, 420, <?php echo $cantidad3; ?>],
+                          name: '<?php echo $desarrollo; ?> actual'
                         }
+                        
                       ]
                     }]
                   });
@@ -673,7 +704,7 @@ SESSION_START();
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Website Traffic <span>| Today</span></h5>
+              <h5 class="card-title">Envios <span>| Today</span></h5>
 
               <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
 
@@ -688,7 +719,7 @@ SESSION_START();
                       left: 'center'
                     },
                     series: [{
-                      name: 'Access From',
+                      name: 'funciones diarias',
                       type: 'pie',
                       radius: ['40%', '70%'],
                       avoidLabelOverlap: false,
@@ -706,26 +737,20 @@ SESSION_START();
                       labelLine: {
                         show: false
                       },
-                      data: [{
-                          value: 1048,
-                          name: 'Search Engine'
+                      data: [
+                        {
+                          value: <?php echo $cantidad1; ?>,
+                          name: '<?php echo $desarrollo; ?>'
                         },
                         {
-                          value: 735,
-                          name: 'Direct'
+                          value: <?php echo $cantidad2; ?>,
+                          name: '<?php echo $ingresoDB; ?>'
                         },
                         {
-                          value: 580,
-                          name: 'Email'
-                        },
-                        {
-                          value: 484,
-                          name: 'Union Ads'
-                        },
-                        {
-                          value: 300,
-                          name: 'Video Ads'
+                          value: <?php echo $cantidad3; ?>,
+                          name: '<?php echo $revision; ?>'
                         }
+
                       ]
                     }]
                   });
