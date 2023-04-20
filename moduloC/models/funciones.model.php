@@ -22,8 +22,8 @@ class Funciones
 	function Guardar($id_personal,$funcion,$unimed,$cantidad,$frecuencia)
 	{
 		$fecha = date("Y-m-d H:i:s");
-		$id_cargos = 1;
-		$sql = "INSERT INTO funciones VALUES (null,'$id_personal','$id_cargos','$funcion','$unimed','$cantidad','$fecha','$fecha','$frecuencia');";
+		
+		$sql = "INSERT INTO funciones VALUES (null,'$id_personal','$funcion','$unimed','$cantidad','$fecha','$fecha','$frecuencia');";
 		$this->conn->ConsultaSin($sql);
 		
 	}
@@ -39,7 +39,7 @@ class Funciones
 
 	function Consultar($idpersonal)
 	{
-		$sql = "SELECT idfunciones,id_personal,id_cargos,funcion,unimed,cantidad FROM funciones WHERE id_personal = ". $idpersonal;
+		$sql = "SELECT idfunciones,id_personal,funcion,unimed,cantidad FROM funciones WHERE id_personal = ". $idpersonal;
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}

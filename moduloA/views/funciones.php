@@ -21,7 +21,7 @@ $datCargos = $cargos->Consultar();
 
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-8">
 
           <div class="card">
             <div class="card-body">
@@ -32,15 +32,15 @@ $datCargos = $cargos->Consultar();
                 <div class="row mb-3">
                   <input type="text" name="idpersonal" id="idpersonal" value="<?php #echo $_SESSION['admin'];?>">
 
-                  <label for="nombre" class="col-sm-2 col-form-label">Text</label>
-                  <div class="col-sm-10">
+                  <label for="nombre" class="col-sm-3 col-form-label">Personal</label>
+                  <div class="col-sm-9">
                     <input type="text" value="<?php #echo $nombre = 'Edgar';?>" class="form-control">
                   </div>
                 </div>
 
                 <div class="row mb-3">
-                  <label class="col-sm-2 col-form-label">Cargo</label>
-                  <div class="col-sm-10">
+                  <label class="col-sm-3 col-form-label">Cargo</label>
+                  <div class="col-sm-9">
                     <select class="form-select" name="idcargo" id="idcargo" aria-label="Default select example">
                       <option selected>Open this select menu</option>
                       <?php
@@ -57,15 +57,15 @@ $datCargos = $cargos->Consultar();
                 </div>
                 
                 <div class="row mb-3">
-                  <label for="funcion" class="col-sm-2 col-form-label">Funcion</label>
-                  <div class="col-sm-10">
+                  <label for="funcion" class="col-sm-3 col-form-label">Funcion</label>
+                  <div class="col-sm-9">
                     <input type="text" name="funcion" id="funcion" class="form-control">
                   </div>
                 </div>
 
                 <div class="row mb-3">
-                  <label for="unidadMedida" class="col-sm-2 col-form-label">Unidad Medida</label>
-                  <div class="col-sm-10">
+                  <label for="unidadMedida" class="col-sm-3 col-form-label">Unidad Medida</label>
+                  <div class="col-sm-9">
                     <select name="unidadMedida" id="unidadMedida" class="form-select" aria-label="Tipo de unidad de Medida">
                       <option selected>[Seleccionar una opcion]</option>
                       <option value="Numerico">Numerico</option>
@@ -82,8 +82,8 @@ $datCargos = $cargos->Consultar();
                 </div>
 
                 <div class="row mb-3">
-                  <label for="frecuencia" class="col-sm-2 col-form-label">Frecuencia</label>
-                  <div class="col-sm-10">
+                  <label for="frecuencia" class="col-sm-3 col-form-label">Frecuencia</label>
+                  <div class="col-sm-9">
                     <select name="frecuencia" id="frecuencia" class="form-select" aria-label="Tipo de unidad de Medida">
                       <option selected>[Seleccionar una opcion]</option>
                       <option value="Diario">Diario</option>
@@ -101,8 +101,8 @@ $datCargos = $cargos->Consultar();
                 </div>
                 <div class="row mb-3">
 
-                  <label for="cantidad" class="col-sm-2 col-form-label">Cantidad</label>
-                  <div class="col-sm-10">
+                  <label for="cantidad" class="col-sm-3 col-form-label">Cantidad</label>
+                  <div class="col-sm-9">
                     <input type="number" min="0" max="999999" name="cantidad" id="cantidad" class="form-control">
                   </div>
                 </div>
@@ -112,11 +112,10 @@ $datCargos = $cargos->Consultar();
                   <div class="col-sm-3">
                     <button type="reset">Cancelar</button>
                   </div>
-                  <div class="col-sm-10">
+                  <div class="col-sm-9">
                     <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar</button>
                   </div>
                 </div>
-
               </form><!-- End General Form Elements -->
             </div>
           </div>

@@ -1,10 +1,19 @@
 <?php
+require "../models/funciones.model.php";
 
-echo $id_personal = $_REQUEST['idpersonal']."<br>";
-echo $id_cargos = 1."<br>";
-echo $funcion = $_REQUEST['funcion']."<br>";
-echo $unimed = $_REQUEST['unimed']."<br>";
-echo $cantidad = $_REQUEST['cantidad']."<br>";
-echo $frecuencia = $_REQUEST['frecuencia']."<br>";
+$funciones = new Funciones();
 
-Duplicado($id_personal, $id_cargos, $funcion, $unimed, $cantidad, $frecuencia)
+echo $id_personal = $_REQUEST['idpersonal'];
+echo $funcion = $_REQUEST['funcion'];
+echo $unimed = $_REQUEST['unidadMedida'];
+echo $cantidad = $_REQUEST['cantidad'];
+echo $frecuencia = $_REQUEST['frecuencia'];
+
+$dat = $funciones->Duplicado($id_personal, $funcion, $unimed, $cantidad, $frecuencia);
+if(!is_null($dat))
+{
+	echo "Duplicado";
+}else{
+	$funciones->Guardar($id_personal, $funcion, $unimed, $cantidad, $frecuencia);
+}
+header("Location: ../views/tablaFunciones.php");

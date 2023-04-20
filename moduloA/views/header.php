@@ -349,7 +349,7 @@ $data = $personal->MostrarPersona($_SESSION['admin']);
             </a>
           </li>
           <li>
-            <a href="funciones.php">
+            <a href="tablaFunciones.php">
               <i class="bi bi-circle"></i><span>Agregar Funciones</span>
             </a>
           </li>
