@@ -26,14 +26,14 @@ class Areas
 
     public function Consultar()   
     {
-        $sql = "SELECT id_areas, nombre, descripcion, idoficina, id_metas FROM areas";
+        $sql = "SELECT idareas, nombre, descripcion, idoficina, idmetas FROM areas;";
         $data = $this->conn->ConsultaCon($sql);
         return $data;
     }
 
     public function MostrarArea($idarea)
     {
-        $sql = "SELECT id_areas, nombre, id_metas, descripcion,f_creacion,f_update from areas WHERE id_areas = ". $idarea;
+        $sql = "SELECT idareas, nombre, idmetas, descripcion from areas WHERE id_areas = ". $idarea;
         $data = $this->conn->ConsultaCon($sql);
         return $data;
     }
