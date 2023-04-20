@@ -7,7 +7,7 @@ if(isset($_SESSION['admin']))
 require "../models/personal.model.php";
 
 $personal = new Personal();
-$data = $personal->MostrarPersonalUno($_SESSION['admin']);
+$data = $personal->MostrarPersona($_SESSION['admin']);
 # id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI
 
 ?>
