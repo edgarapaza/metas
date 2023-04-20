@@ -1,6 +1,7 @@
 <?php
 require_once("Conexion.php");
-	class Listado
+
+class Listado
 	{
 
 		private $conn;
@@ -11,8 +12,8 @@ require_once("Conexion.php");
         	return $this->conn;
 		}
 
-		function Personal(){
-			$sql = "SELECT id_personal, CONCAT(nombre,' ', paterno,' ',materno) AS personal FROM personal;";
+		function ListadoPersonal(){
+			$sql = "SELECT l.log_usu,l.id_personal AS id_personal,(SELECT CONCAT(p.nombre,' ',p.apellidos) FROM personal AS p WHERE p.id_personal = l.id_personal) AS per,l.niv_usu AS niv_usu,l.chk_usu AS chk_usu FROM login AS l;";
 			$data = $this->conn->ConsultaCon($sql);
 			return $data;
 		}
@@ -35,8 +36,9 @@ require_once("Conexion.php");
 			return $data;
 		}
 
-		function PersonalUnico($codigo){
-			$sql = "SELECT CONCAT(nombre,' ', paterno,' ',materno) AS personal FROM personal WHERE id_personal= $codigo";
+		function PersonalUnico($idpersonal)
+		{
+			$sql = "SELECT CONCAT(nombre,' ', apellidos) AS pers FROM personal WHERE id_personal= $idpersonal;";
 			$dato = $this->conn->ConsultaArray($sql);
 			return $dato;
 		}
