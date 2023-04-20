@@ -1,7 +1,7 @@
 <?php
-require("../moduloA/models/oficinas.model.php");
-require("../moduloA/models/areas.model.php");
-require("../moduloA/models/personal.model.php");
+require("../models/oficinas.model.php");
+require("../models/areas.model.php");
+require("../models/personal.model.php");
 
 $oficinas = new Oficinas();
 $office = $oficinas->Consultar();

@@ -306,7 +306,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="estadisticas.php">
               <i class="bi bi-circle"></i><span>Ver mis estadisticas</span>
             </a>
           </li>
