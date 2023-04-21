@@ -1,6 +1,6 @@
 <?php
 require "header.php";
-require "../models/listado.class.php";
+require "../models/Listado.class.php";
 require "../models/cargos.model.php";
 
 $cargos = new Cargos();

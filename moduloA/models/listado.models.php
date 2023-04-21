@@ -1,8 +1,8 @@
 <?php
-require_once("Conexion.php");
+require "Conexion.php";
 
 class Listado
-	{
+{
 
 		private $conn;
 
@@ -54,6 +54,6 @@ class Listado
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
-	}
+}
 
  ?>

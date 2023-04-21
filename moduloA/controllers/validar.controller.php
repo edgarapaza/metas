@@ -1,11 +1,13 @@
 <?php
 session_start();
-require "../models/ValidarUsuario.php";
-$validar = new ValidarUsuario();
+require "../models/validar.model.php";
+
+$validar = new Validar();
+
 $user = $_REQUEST['txtusuario'];
 $pass = $_REQUEST['txtpassword'];
 
-$data = $validar->Validar($user, $pass);
+$data = $validar->Verificar('edgar','edgar');
 
 if($data['chk_usu'] == 1)
 {
