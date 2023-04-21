@@ -14,7 +14,7 @@ class ValidarUsuario
 
 		function Validar($user, $pass)
 		{
-			$sql = "SELECT id_personal, niv_usu, chk_usu FROM login WHERE nom_usu = '$user' AND psw_usu = '$pass'";
+			$sql = "SELECT id_personal, niv_usu, chk_usu FROM login WHERE nom_usu = '$user' AND psw_usu = '$pass';";
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
