@@ -4,18 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <header>Menu</header>
+            <header class="animate__animated animate__heartBeat animate__infinite">Menú</header>
             <em>Escoja como ingresar</em>
+            <br>
+            <br>
+            <a href="./moduloA/">
+                <div>
+            <button type="button" class="btn btn-success btn-lg">Administrador</button>
+                </div>
+            </a>
 
-            <a href="./moduloA/"><div class="Caja Admin">Administrador</div></a>
-            <a href="./moduloB/"><div class="Caja Jefe">Jefe de Area</div></a>
-            <a href="./moduloC/"><div class="Caja Usuario">Usuario</div></a>
+            <a href="./moduloB/">
+                <div>
+            <button type="button" class="btn btn-warning btn-lg">Jefe de Área</button>
+                </div>
+            </a>
+
+            <a href="./moduloC/">
+                <div>
+            <button type="button" class="btn btn-danger btn-lg">Usuario</button>
+                </div>
+            </a>
         </div>
     </div>
+
+
 </body>
 </html>
