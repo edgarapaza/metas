@@ -1,5 +1,5 @@
 <?php
-require "Conexion.php";
+require_once "Conexion.php";
 
 class Listado
 {
@@ -30,11 +30,13 @@ class Listado
 			return $data;
 		}
 
-		function Cargo(){
-			$sql="SELECT id_cargo, cargo FROM cargos;";
-			$data = $this->conn->ConsultaArray($sql);
-			return $data;
+		public function Cargos()
+		{
+			$sql = "SELECT id_cargos,id_oficina,nombre_cargo FROM cargos";
+			$response = $this->conn->ConsultaCon($sql);
+			return $response;
 		}
+		
 
 		function PersonalUnico($idpersonal)
 		{
