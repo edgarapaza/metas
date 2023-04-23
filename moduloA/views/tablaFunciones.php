@@ -1,15 +1,13 @@
 <?php
 require "header.php";
-require "../models/listado.class.php";
-require "../models/cargos.model.php";
 
-$cargos = new Cargos();
-$datCargos = $cargos->Consultar();
+require "../models/listado.models.php";
 
 $listado = new Listado();
+
+$datCargos = $listado->Cargos();
 $list = $listado->ListadoPersonal();
 
-$_SESSION['inicio'];
 ?>
 
 
