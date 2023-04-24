@@ -11,16 +11,17 @@ class Funciones
         return $this->conn;
 	}
 
-	function Duplicado($id_personal, $id_cargos, $funcion, $unimed, $cantidad, $frecuencia)
+	function Duplicado($id_personal, $funcion, $unimed, $cantidad, $frecuencia)
 	{
-		$sql = "SELECT idfunciones FROM funciones WHERE id_personal = '$id_personal', id_cargos = '$id_cargos', funcion = '$funcion', unimed = '$unimed', cantidad = '$cantidad', frecuencia = '$frecuencia';";
+		$sql = "SELECT idfunciones FROM funciones WHERE id_personal = '$id_personal' AND funcion = '$funcion' AND unimed = '$unimed' AND cantidad = '$cantidad' AND frecuencia = '$frecuencia';";
 		$data = $this->conn->ConsultaArray($sql);
 		return $data;
 	}
 
-	function GuardarFuncion()
+	function Guardar($id_personal, $funcion, $unimed, $cantidad, $frecuencia)
 	{
-		$sql = "";
+		$fecha = date('Y-m-d H:i:s');
+		$sql = "INSERT INTO funciones VALUES (null,'$id_personal','$funcion','$unimed','$cantidad','$fecha','$fecha','$frecuencia');";
 		$this->conn->ConsultaSin($sql);
 	}
 }

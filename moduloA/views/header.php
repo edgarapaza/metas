@@ -2,14 +2,10 @@
 session_start();
 if(isset($_SESSION['admin']))
 {
-
-
-require "../models/personal.model.php";
-
-$personal = new Personal();
-$data = $personal->MostrarPersona($_SESSION['admin']);
-# id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI
-
+  require "../models/personal.model.php";
+  $personal = new Personal();
+  $data = $personal->MostrarPersona($_SESSION['admin']);
+  # id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI
 ?>
 <!doctype html>
 <html lang="es-ES">
@@ -235,7 +231,6 @@ $data = $personal->MostrarPersona($_SESSION['admin']);
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
               <h6><?php echo $data['nombre']." ".$data['apellidos']; ?></h6>
-
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -349,7 +344,7 @@ $data = $personal->MostrarPersona($_SESSION['admin']);
             </a>
           </li>
           <li>
-            <a href="funciones.php">
+            <a href="tablaFunciones.php">
               <i class="bi bi-circle"></i><span>Agregar Funciones</span>
             </a>
           </li>

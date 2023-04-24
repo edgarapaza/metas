@@ -1,18 +1,16 @@
 <?php
 require "header.php";
-require "../models/listado.class.php";
+require "../models/listado.models.php";
 
 $listado = new Listado();
 $list = $listado->ListadoPersonal();
 
-$_SESSION['inicio'];
 ?>
 
 
   <main id="main" class="main">
-
     <div class="pagetitle">
-      <h1>Data Tables</h1>
+      <h1>Listado de Personal</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -28,16 +26,16 @@ $_SESSION['inicio'];
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
+              <h5 class="card-title">Listado de personal</h5>
 
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Nombre</th>
                     <th scope="col">Nivel</th>
-                    <th scope="col">check-user</th>
+                    <th scope="col">Estado</th>
                     <th scope="col">Options</th>
                   </tr>
                 </thead>
