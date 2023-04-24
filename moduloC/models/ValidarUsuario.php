@@ -68,5 +68,18 @@ class ValidarUsuario
 			$this->conn->Consultasin($sql);
 		}
 
+		function RegistrarSalida($idpersonal,$fecha,$horaEntrada,$tipo,$horasalida,$tiempoUso)
+		{
+			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$horaEntrada','$tipo','$horasalida','$tiempoUso');";
+			$this->conn->ConsultaSin($sql);
+		}
+		
+		function Verificar($idpersonal,$fecha,$tipo)
+		{
+			$sql = "SELECT hora FROM asistencia WHERE idpersonal = $idpersonal AND fecha = '$fecha' AND tipo = '$tipo';";
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
+		}
+
 	}
  ?>
