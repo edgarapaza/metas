@@ -1,9 +1,6 @@
 <?php include_once("header.php"); ?>
-<<<<<<< HEAD
 <?php include_once("sidebar.php"); ?>
 
-=======
->>>>>>> 31bc32046a1e31027a5e705c0abc2bfd59671f51
   <main id="main" class="main">
 
     <div class="pagetitle">
