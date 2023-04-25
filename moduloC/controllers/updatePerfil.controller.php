@@ -8,6 +8,7 @@ $telefono  = $_POST['telefono'];
 $email     = $_POST['email'];
 $foto      = $_POST['foto'];
 $fecha_nac = $_POST['fecha_nacimiento'];
+$direccion = $_POST['direccion'];
 
 # Ruta del archivo - Copiar imagen y moverla a la carpeta del servidor
 # C:\laragon\www\metas\moduloC\views\images\
