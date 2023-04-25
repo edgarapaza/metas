@@ -1,11 +1,10 @@
 <?php
 require "header.php";
-require "../models/listado.class.php";
+require "../models/listado.models.php";
 
 $listado = new Listado();
 $list = $listado->ListadoPersonal();
 
-$_SESSION['inicio'];
 ?>
 
 

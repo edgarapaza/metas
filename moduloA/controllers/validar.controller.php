@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require "../models/validar.model.php";
 
 $validar = new Validar();
