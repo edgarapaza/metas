@@ -1,4 +1,5 @@
-<?php include('header.php')?>
+<?php include('header.php'); ?>
+
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -20,7 +21,8 @@
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-              <h2>Kevin Anderson</h2>
+
+              <h2><?php echo $data['personal'];?></h2>
               <h3>Desarrollador Web</h3>
               <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
@@ -67,37 +69,37 @@
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Nombre:</div>
-                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['nombre'];?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label ">Apellido:</div>
-                    <div class="col-lg-9 col-md-8">Apaza</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['apellidos'];?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Sexo:</div>
-                    <div class="col-lg-9 col-md-8">masculino</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['sexo'];?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Telefono:</div>
-                    <div class="col-lg-9 col-md-8">976541235</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['telefono'];?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Fecha de Nacimiento:</div>
-                    <div class="col-lg-9 col-md-8">16/08/1999</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['fecha_nac'];?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Email:</div>
-                    <div class="col-lg-9 col-md-8">kevin@gmail.com</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['email'];?></div>
                   </div>
 
                   <div class="row">
                     <div class="col-lg-3 col-md-4 label">Dni:</div>
-                    <div class="col-lg-9 col-md-8">12345678</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['DNI'];?></div>
                   </div>
 
                 </div>
@@ -105,17 +107,20 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Formulario de edición de perfil -->
-                  <form>
-                  <div class="row mb-3">
+                  <form method="post" action="../controllers/updatePerfil.controller.php">
+
+                    <input type="hidden" name="idpersonal" value="<?php echo $_SESSION['personal'];?>">
+
+                    <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="">Nombre</label>
                         <div class="col-sm-8">
-                            <input type="text" required class="form-control" id="nombre" name="nombre">
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $data['nombre'];?>" required >
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="">Apellidos:</label>
                         <div class="col-sm-8">
-                            <input type="text" required class="form-control" id="apellidos" name="apellidos">
+                            <input type="text" required class="form-control" id="apellidos" name="apellidos" value="<?php echo $data['apellidos'];?>">
                         </div>
                     </div>
                     <fieldset class="row mb-3">
@@ -134,7 +139,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="">Telefono:</label>
                         <div class="col-sm-3">
-                            <input type="text" required class="form-control" id="telefono" name="telefono">
+                            <input type="text" required class="form-control" id="telefono" name="telefono" value="<?php echo $data['telefono'];?>">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -158,37 +163,10 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">DNI:</label>
                         <div class="col-sm-2">
-                            <input type="text" required class="form-control" id="dni" name="dni">
+                            <input type="text" class="form-control" id="dni" name="dni" value="<?php echo $data['DNI'];?>" required>
                         </div>
                     </div>
 
-                    <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Perfil de Twitter</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter" value="https://twitter.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Perfil de Facebook</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook" value="https://facebook.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Perfil de Instagram</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram" value="https://instagram.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Perfil de Linkedin</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin" value="https://linkedin.com/#">
-                      </div>
-                    </div>
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Guardar cambios</button>
@@ -281,3 +259,5 @@
     </section>
 
   </main><!-- End #main -->
+
+<?php include('footer.php'); ?>
