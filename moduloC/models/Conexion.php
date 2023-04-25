@@ -10,7 +10,7 @@ class Conexion
 	    $host = "localhost";
         $user = "root";
         $pass = "";
-        $db   = "avancemetas";
+        $db   = "avancemetas";  
 
         $this->conn = new mysqli($host, $user, $pass, $db);
 
@@ -63,3 +63,4 @@ class Conexion
         return $data;
     }
 }
+?>
