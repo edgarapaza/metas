@@ -359,6 +359,11 @@ $fun = $funciones->Consultar($_SESSION['personal']);
                 <i class="bi bi-circle"></i><span>Avace Mensual</span>
                 </a>
             </li>
+            <li>
+              <a href="graficos.php">
+              <i class="bi bi-circle"></i><span>graficos</span>
+            </a>
+          </li>
             </ul>
         </li><!-- End Charts Nav -->
 

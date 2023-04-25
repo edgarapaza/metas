@@ -415,7 +415,6 @@ $_SESSION['inicio'];
                         {
                           echo "Personal";
                         }
->>>>>>> f6b9d7eca948c9bcd4de55626920c2e6f4b9d69d
                       ?>
                     </td>
                     <td>
