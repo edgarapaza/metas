@@ -1,19 +1,24 @@
 <?php include_once("header.php"); ?>
+<<<<<<< HEAD
+<?php include_once("sidebar.php"); ?>
+
+=======
+>>>>>>> 31bc32046a1e31027a5e705c0abc2bfd59671f51
   <main id="main" class="main">
 
     <div class="pagetitle">
       <h1>Dashboard</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
+          <li class="breadcrumb-item active"><a href="index.php">Home</a></li>
+
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-     <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle me-1"></i>
-                 <div id="mensaje"></div>
+                  <div id="mensaje"></div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
@@ -59,8 +64,7 @@
                     if(!is_null($response))
                     {
                       
-                        echo "<span class='badge bg-success rounded-pill'>OK</span>";
-                     
+                        echo "<span class='badge bg-success rounded-pill'>OK</span>";                     
                       
                     }
                     else{

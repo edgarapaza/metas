@@ -15,12 +15,13 @@ $_SESSION['inicio'];
 $funciones = new Funciones();
 $fun = $funciones->Consultar($_SESSION['personal']);
 
+
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
+    <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -288,6 +289,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
 
     </header><!-- End Header -->
 
+<<<<<<< HEAD
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -371,5 +373,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </ul>
 
     </aside><!-- End Sidebar-->
+=======
+>>>>>>> fe3c58afe6683681e2c3412a3d32ea2390eab5d7
 
 

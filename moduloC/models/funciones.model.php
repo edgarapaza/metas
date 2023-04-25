@@ -36,6 +36,14 @@ class Funciones
 		$data = $this->conn->ConsultaArray($sql);
 		return $data;
 	}
+
+	//Extrayendo los reportes del usuario
+	/*function MostrarReporte($idpersonal)
+	{
+		$sql= "SELECT funcion FROM funciones where id_personal = $idpersonal AND idfunciones = 3;";
+		$dato = $this->conn->ConsultaArray($sql);
+		return $dato;
+	}*/
 //utilizar esta funcion para la pagina estadisticas
 	function Consultar($idpersonal)
 	{
