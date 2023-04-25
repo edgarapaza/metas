@@ -5,6 +5,10 @@ require "../models/funciones.model.php";
 
 $persona = new Persona();
 $data = $persona->MostrarPersona($_SESSION['personal']);
+
+# personal, nombre, apellidos, sexo, telefono,fecha_nac, DNI, foto
+
+
 $_SESSION['inicio'];
 
 
@@ -16,7 +20,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
+  <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -63,6 +67,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
             <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Personal</span>
         </a>
+
         <i class="bi bi-list toggle-sidebar-btn"></i>
         </div><!-- End Logo -->
 
@@ -361,3 +366,5 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </ul>
 
     </aside><!-- End Sidebar-->
+
+
