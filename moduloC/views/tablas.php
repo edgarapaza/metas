@@ -40,10 +40,11 @@
                     include "../models/listado.model.php";
                     $listado = new Listado();
                     $data = $listado->ListadoPersonal();
+                    
                     $i = 1;
                     while($fila = $data->fetch_array(MYSQLI_ASSOC))
                     {
-                    
+                      $nivel =  $fila['niv_usu'];
                   ?>
 
                   <tr>

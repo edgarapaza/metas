@@ -15,6 +15,7 @@ $_SESSION['inicio'];
 $funciones = new Funciones();
 $fun = $funciones->Consultar($_SESSION['personal']);
 
+
 ?>
 
 <!DOCTYPE html>

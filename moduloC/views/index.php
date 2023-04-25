@@ -1,5 +1,6 @@
 <?php include_once("header.php"); ?>
 <?php include_once("sidebar.php"); ?>
+
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -7,7 +8,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item active"><a href="index.php">Home</a></li>
-          
+
         </ol>
       </nav>
     </div><!-- End Page Title -->

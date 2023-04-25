@@ -34,24 +34,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">25/04/2023</th>
-                            <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
-                            <td>64 submit 78 deletion 89 agragartions</td>
-                            <td><span class="badge bg-success">OK</span></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">26/04/2023</th>
-                            <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
-                            <td>8 submit 9 deletion 0 agregations</td>
-                            <td><span class="badge bg-success">OK</span></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">27/04/2023</th>
-                            <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
-                            <td>0</td>
-                            <td><span class="badge bg-danger">Falta</span></td>
-                        </tr>
+                            <?php $fil = $fun->fetch_array(MYSQLI_ASSOC);?>
+                            <tr>
+                                <th scope="row">25/04/2023</th>
+                                <td><a href="#" class="text-primary fw-bold"><?php echo $fil['funcion']; ?></a></td>
+                                <td>64 submit 78 deletion 89 agragartions</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">26/04/2023</th>
+                                <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
+                                <td>8 submit 9 deletion 0 agregations</td>
+                                <td><span class="badge bg-success">OK</span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">27/04/2023</th>
+                                <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
+                                <td>0</td>
+                                <td><span class="badge bg-danger">Falta</span></td>
+                            </tr>
                         </tbody>
                     </table>
 
