@@ -4,12 +4,12 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Profile</h1>
+      <h1>Perfil</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-          <li class="breadcrumb-item">Users</li>
-          <li class="breadcrumb-item active">Profile</li>
+          <li class="breadcrumb-item">Usuario</li>
+          <li class="breadcrumb-item active">Perfil</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -26,10 +26,6 @@
               <h2><?php echo $data['personal'];?></h2>
               <h3>Desarrollador Web</h3>
               <div class="social-links mt-2">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
               </div>
             </div>
           </div>
@@ -103,6 +99,11 @@
                     <div class="col-lg-9 col-md-8"><?php echo $data['DNI'];?></div>
                   </div>
 
+                  <div class="row">
+                    <div class="col-lg-3 col-md-4 label">Direccion:</div>
+                    <div class="col-lg-9 col-md-8"><?php echo $data['direccion'];?></div>
+                  </div>
+
                 </div>
 
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
@@ -167,7 +168,12 @@
                             <input type="text" class="form-control" id="dni" name="dni" value="<?php echo $data['DNI'];?>" required>
                         </div>
                     </div>
-
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Dirección:</label>
+                        <div class="col-sm-2">
+                            <input type="text" required class="form-control" id="direccion" name="direccion" value="<?php echo $data['direccion'];?>">
+                        </div>
+                    </div>
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Guardar cambios</button>
@@ -262,3 +268,4 @@
   </main><!-- End #main -->
 
 <?php include('footer.php'); ?>
+
