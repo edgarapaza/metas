@@ -390,10 +390,11 @@ $_SESSION['inicio'];
                      include "../models/listado.model.php";
                      $listado = new Listado();
                      $data = $listado->ListadoPersonal();
+                     
                      $i = 1;
                      while($fila = $data->fetch_array(MYSQLI_ASSOC))
                      {
-                     
+                      $nivel =  $fila['niv_usu'];
                   ?>
 
                   <tr>
@@ -414,6 +415,7 @@ $_SESSION['inicio'];
                         {
                           echo "Personal";
                         }
+>>>>>>> f6b9d7eca948c9bcd4de55626920c2e6f4b9d69d
                       ?>
                     </td>
                     <td>

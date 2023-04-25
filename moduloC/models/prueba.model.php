@@ -31,7 +31,7 @@ class Login
 }
 
 $login = new Login();
-$respuesta =  $login->MiLogin('edgar','edgar');
+$respuesta =  $login->MiLogin('emp','emp');
 
 var_dump($respuesta);
 echo $respuesta['id_personal'];
