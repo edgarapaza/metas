@@ -1,5 +1,4 @@
 <?php include_once("header.php"); ?>
-<?php include_once("sidebar.php"); ?>
 
     <main id="main" class="main">
 
@@ -34,25 +33,38 @@
                         </tr>
                         </thead>
                         <tbody>
-                            <?php $fil = $fun->fetch_array(MYSQLI_ASSOC);?>
+                            <?php 
+                                $i = 1;
+                                while($funcion = $fun->fetch_array(MYSQLI_ASSOC))
+                                {
+                                    while($reporte = $dato->fetch_array(MYSQLI_ASSOC))
+                                    {
+                                        #echo $reporte['idreporte'];
+                                        #echo $reporte['idfunciones'];
+                                        #echo $reporte['fecha'];
+                                        #echo $reporte['cantidad'];
+                                        #echo $funcion['funcion'];
+                                        #echo $i;
+                            ?>
                             <tr>
-                                <th scope="row">25/04/2023</th>
-                                <td><a href="#" class="text-primary fw-bold"><?php echo $fil['funcion']; ?></a></td>
-                                <td>64 submit 78 deletion 89 agragartions</td>
-                                <td><span class="badge bg-success">OK</span></td>
+                                <th scope="row"><?php echo $reporte['fecha']; ?></th>
+                                <td class="text-primary fw-bold"><?php echo $funcion['funcion']; ?></td>
+                                <td><?php echo $reporte['cantidad']; ?></td>
+                                <td>                                    
+                                    <?php
+                                        if(!$reporte['cantidad']){
+                                            echo "<span class='badge bg-danger'>Falta</span>";
+                                        }else{
+                                            echo "<span class='badge bg-success'>OK</span>";
+                                        }
+                                    ?>
+                                </td>
                             </tr>
-                            <tr>
-                                <th scope="row">26/04/2023</th>
-                                <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
-                                <td>8 submit 9 deletion 0 agregations</td>
-                                <td><span class="badge bg-success">OK</span></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">27/04/2023</th>
-                                <td><a href="#" class="text-primary fw-bold">Desarrollo de software</a></td>
-                                <td>0</td>
-                                <td><span class="badge bg-danger">Falta</span></td>
-                            </tr>
+                            <?php
+                                    $i++;
+                                    }
+                                }
+                            ?>
                         </tbody>
                     </table>
 
