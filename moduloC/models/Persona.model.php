@@ -46,10 +46,9 @@ class Persona
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
-		
-    	function UpdatePersona($telefono, $fecha_nac, $email, $ruta, $idpersonal)
-		{
-			$sql = "UPDATE personal SET telefono = '$telefono', fecha_nac = '$fecha_nac', email = '$email', foto = '$ruta' WHERE (id_personal = '$idpersonal');";
-			$this->conn->ConsultaSin($sql);
-		}
+    	function UpdatePersona($telefono, $fecha_nac, $email, $ruta, $direccion, $idpersonal)
+			{
+				$sql = "UPDATE personal SET telefono = '$telefono', fecha_nac = '$fecha_nac', email = '$email', foto = '$ruta', direccion = '$direccion' WHERE (id_personal = '$idpersonal');";
+				$this->conn->ConsultaSin($sql);
+			}
 	}

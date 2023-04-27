@@ -70,6 +70,14 @@
             </a>
         </li>
         </ul>
+
+        <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+            <a href="graficoPersonal.php">
+            <i class="bi bi-circle"></i><span>graficos</span>
+            </a>
+        </li>
+        </ul>   
     </li><!-- End Charts Nav -->
 
 
