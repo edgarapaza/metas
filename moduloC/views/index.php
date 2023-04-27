@@ -1,5 +1,4 @@
 <?php include_once("header.php"); ?>
-<?php include_once("sidebar.php"); ?>
 
   <main id="main" class="main">
 
@@ -86,7 +85,7 @@
         <!-- Inicio del FORMULARIO -->
               
         <div class="col-lg-6">
-        <form action="" >
+        <form action="../controllers/reportes.controller.php" method="post">
           <div class="card" id="reporte">
             <div class="card-body">
               <h5 class="card-title">Reporte</h5>

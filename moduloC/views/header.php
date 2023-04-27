@@ -14,6 +14,7 @@ $_SESSION['inicio'];
 
 $funciones = new Funciones();
 $fun = $funciones->Consultar($_SESSION['personal']);
+$dato = $funciones->MostrarReporte($_SESSION['personal']);
 
 
 ?>
@@ -64,7 +65,7 @@ $fun = $funciones->Consultar($_SESSION['personal']);
     <header id="header" class="header fixed-top d-flex align-items-center">
 
         <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="index.php" class="logo d-flex align-items-center">
             <img src="assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">Personal</span>
         </a>
@@ -295,7 +296,6 @@ $fun = $funciones->Consultar($_SESSION['personal']);
 
     </header><!-- End Header -->
 
-<<<<<<< HEAD
     <!-- ======= Sidebar ======= -->
     <aside id="sidebar" class="sidebar">
 
@@ -368,10 +368,10 @@ $fun = $funciones->Consultar($_SESSION['personal']);
                 </a>
             </li>
             <li>
-              <a href="graficos.php">
-              <i class="bi bi-circle"></i><span>graficos</span>
+                <a href="graficos.php">
+                <i class="bi bi-circle"></i><span>graficos</span>
             </a>
-          </li>
+            </li>
             </ul>
         </li><!-- End Charts Nav -->
 
@@ -379,7 +379,5 @@ $fun = $funciones->Consultar($_SESSION['personal']);
         </ul>
 
     </aside><!-- End Sidebar-->
-=======
->>>>>>> fe3c58afe6683681e2c3412a3d32ea2390eab5d7
 
 
