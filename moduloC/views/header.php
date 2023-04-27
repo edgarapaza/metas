@@ -281,6 +281,12 @@ $fun = $funciones->Consultar($_SESSION['personal']);
                 </a>
                 </li>
 
+                <li>
+                <a class="dropdown-item d-flex align-items-center" href="../controllers/salida.controller.php">
+                    <i class="bi bi-box-arrow-right"></i>cerrar sesion - marcar salida
+                </a>
+                </li>
+
             </ul><!-- End Profile Dropdown Items -->
             </li><!-- End Profile Nav -->
 
