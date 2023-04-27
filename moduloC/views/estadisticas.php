@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 include_once("header.php");
 
@@ -5,6 +6,18 @@ $data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
 
 
+=======
+<?php include_once("header.php"); ?>
+<?php include_once("sidebar.php"); ?>
+<?php
+//contiene esto el header.php:
+//$persona = new Persona();
+//$data = $persona->MostrarPersona($_SESSION['personal']);
+//$funciones = new Funciones();
+
+$_SESSION['inicio'];
+
+>>>>>>> zeta
 $fun = $funciones->Consultar1($_SESSION['personal']);
 //segun id funciones guardara y pasara para imprimir cada funcion del personal y su progreso si se agrega o cambia, se cambia las variables
 //variables destinadas a la tabla funciones 19/04/23
@@ -31,6 +44,10 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
 }
 ?>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> zeta
   <main id="main" class="main">
 
     <div class="pagetitle">

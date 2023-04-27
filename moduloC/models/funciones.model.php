@@ -54,7 +54,7 @@ class Funciones
 
 	function Consultar1($idpersonal)
 	{
-		$sql = "SELECT idfunciones,id_personal,id_cargos,funcion,unimed,cantidad,fecha_creacion FROM funciones WHERE id_personal = ". $idpersonal;
+		$sql = "SELECT idfunciones,id_personal,funcion,unimed,cantidad,fecha_creacion FROM funciones WHERE id_personal = ". $idpersonal;
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}

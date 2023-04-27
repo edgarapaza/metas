@@ -68,9 +68,9 @@ class ValidarUsuario
 			$this->conn->Consultasin($sql);
 		}
 
-		function RegistrarSalida($idpersonal,$fecha,$horaEntrada,$tipo,$horasalida,$tiempoUso)
+		function RegistrarSalida($idpersonal,$fecha,$horaEntrada,$tipoS,$horasalida,$tiempoUso)
 		{
-			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$horaEntrada','$tipo','$horasalida','$tiempoUso');";
+			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$horaEntrada','$tipoS','$horasalida','$tiempoUso');";
 			$this->conn->ConsultaSin($sql);
 		}
 		
