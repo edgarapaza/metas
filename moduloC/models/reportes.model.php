@@ -1,5 +1,5 @@
 <?php
-require "Conexion.php";
+require_once "Conexion.php";
 
 class Reportes
 {
@@ -58,6 +58,21 @@ class Reportes
 
 		return $response;
 	}
+
+	public function verReportes(){
+		$sql = "SELECT CONCAT(p.nombre,' ',p.apellidos) AS nombre, SUM(r.cantidad) as cantidad 
+		FROM reportes as r 
+		JOIN personal as p ON p.id_personal = r.idpersonal 
+		GROUP BY r.idpersonal;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+
+
+
+
+
+	
 	/*public function Consultarcant($cantidad)
 	{
 		$sql = "SELECT cantidad from reportes WHERE cantidad=$cantidad;";

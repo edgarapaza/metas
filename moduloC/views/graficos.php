@@ -1,4 +1,5 @@
 <?php include_once("header.php"); ?>
+
 <main id="main" class="main">
 
     <div class="pagetitle">
@@ -24,19 +25,43 @@
 
               <!-- Bar Chart -->
               <div id="barChart" style="min-height: 400px;" class="echart"></div>
+              <?php 
+              include "../models/reportes.model.php";
+              $reportes = new Reportes();
+              $data = $reportes->verReportes();
+
+              $datos = array();
+
+                // Recorrer el resultado y añadir los datos al array
+                while ($fila = $data->fetch_assoc()) {
+                    $datos[$fila['nombre']] = $fila['cantidad'];
+                }
+                // Convertir los datos a formato JSON
+                $datos_json = json_encode($datos);
+              ?>
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
+                  var datos = <?php echo $datos_json; ?>;
+                  // Convertir los datos a un array de objetos
+                  var datos_array = [];
+                  Object.keys(datos).forEach(function(key) {
+                      datos_array.push({
+                        name: key,
+                        value: datos[key]
+                      }); 
+                    });
+
                   echarts.init(document.querySelector("#barChart")).setOption({
                     xAxis: {
                       type: 'category',
-                      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                      data: ['edg', 'ang', 'jho', 'elm', 'jer', 'sa', 'do']
                     },
                     yAxis: {
                       type: 'value'
                     },
                     series: [{
-                      data: [120, 200, 150, 80, 70, 110, 130],
+                      data: datos_array,
                       type: 'bar'
                     }]
                   });
