@@ -68,6 +68,17 @@ class Reportes
 		return $data;
 	}
 
+	public function totalAsistencia(){
+		$sql = "SELECT p.nombre, COUNT(*) AS cantidad
+		FROM asistencia a
+		JOIN personal p ON a.idpersonal = p.id_personal
+		WHERE a.tipo = 'entrada'
+		GROUP BY p.id_personal;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+	
+
 
 
 

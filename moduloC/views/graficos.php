@@ -21,7 +21,7 @@
       <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Bar Chart</h5>
+              <h5 class="card-title">Total de Reportes Enviados</h5>
 
               <!-- Bar Chart -->
               <div id="barChart" style="min-height: 400px;" class="echart"></div>
@@ -76,57 +76,74 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Vertical Bar Chart</h5>
+              <h5 class="card-title">ASISTENCIA</h5>
 
-              <!-- Vertical Bar Chart -->
-              <div id="verticalBarChart" style="min-height: 400px;" class="echart"></div>
+              <!-- Bar Chart -->
+              <canvas id="barChart1" style="max-height: 400px;"></canvas>
+
+              <?php
+              //ya esta instanciado la clase Reportes-> $reportes
+                
+                $totalAsistencia = $reportes->totalAsistencia();
+
+                $labels = array();
+                $data = array();
+              
+                while ($fila = $totalAsistencia->fetch_assoc()) {
+                    array_push($labels, $fila['nombre']);
+                    array_push($data, $fila['cantidad']);
+                }
+              
+              ?>
+
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
-                  echarts.init(document.querySelector("#verticalBarChart")).setOption({
-                    title: {
-                      text: 'World Population'
+                  new Chart(document.querySelector('#barChart1'), {
+                    type: 'bar',
+                    data: {
+                      labels: <?php echo json_encode($labels); ?>,
+                      datasets: [{
+                        label: 'Total de Asistencia',
+                        data: <?php echo json_encode($data); ?>,
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(255, 159, 64, 0.2)',
+                          'rgba(255, 205, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(201, 203, 207, 0.2)'
+                        ],
+                        borderColor: [
+                          'rgb(255, 99, 132)',
+                          'rgb(255, 159, 64)',
+                          'rgb(255, 205, 86)',
+                          'rgb(75, 192, 192)',
+                          'rgb(54, 162, 235)',
+                          'rgb(153, 102, 255)',
+                          'rgb(201, 203, 207)'
+                        ],
+                        borderWidth: 1
+                      }]
                     },
-                    tooltip: {
-                      trigger: 'axis',
-                      axisPointer: {
-                        type: 'shadow'
+                    options: {
+                      scales: {
+                        y: {
+                          beginAtZero: true
+                        }
                       }
-                    },
-                    legend: {},
-                    grid: {
-                      left: '3%',
-                      right: '4%',
-                      bottom: '3%',
-                      containLabel: true
-                    },
-                    xAxis: {
-                      type: 'value',
-                      boundaryGap: [0, 0.01]
-                    },
-                    yAxis: {
-                      type: 'category',
-                      data: ['Brazil', 'Indonesia', 'USA', 'India', 'China', 'World']
-                    },
-                    series: [{
-                        name: '2011',
-                        type: 'bar',
-                        data: [18203, 23489, 29034, 104970, 131744, 630230]
-                      },
-                      {
-                        name: '2012',
-                        type: 'bar',
-                        data: [19325, 23438, 31000, 121594, 134141, 681807]
-                      }
-                    ]
+                    }
                   });
                 });
               </script>
-              <!-- End Vertical Bar Chart -->
+              <!-- End Bar CHart -->
 
             </div>
           </div>
         </div>
+
+       
 
         <div class="col-lg-6">
           <div class="card">
