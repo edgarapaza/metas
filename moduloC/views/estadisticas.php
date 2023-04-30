@@ -1,34 +1,20 @@
 <?php 
 include_once("header.php");
+require "../models/reportes.model.php";
+//$_SESSION['personal'] -> esto contiene idpersonal en variable global
 
-$data = $persona->MostrarPersona($_SESSION['personal']);
 $_SESSION['inicio'];
+$reportes = new Reportes();
+$asistencia = $reportes->estadisticasAsistencia($_SESSION['personal']);
+$totalReportes = $reportes->totalReportes($_SESSION['personal']);
+$numeroFunciones = $reportes->numeroFunciones($_SESSION['personal']);
+$grafico2 = $reportes->grafico2($_SESSION['personal']);
+$grafico3 = $reportes->grafico3($_SESSION['personal']);
 
 
-$fun = $funciones->Consultar1($_SESSION['personal']);
-//segun id funciones guardara y pasara para imprimir cada funcion del personal y su progreso si se agrega o cambia, se cambia las variables
-//variables destinadas a la tabla funciones 19/04/23
-while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
-  if($fila['idfunciones']==3){
-    $desarrollo = $fila['funcion'];
-    $porcentaje = $fila['unimed'];
-    $cantidad1 = $fila['cantidad'];
-    $fecha1 = $fila['fecha_creacion'];
-  }
-  if($fila['idfunciones']==4){
-    $ingresoDB = $fila['funcion'];
-    $numIngreso = $fila['unimed'];
-    $cantidad2 = $fila['cantidad'];
-    $fecha2 = $fila['fecha_creacion'];
-  }
-  if($fila['idfunciones']==5){
-    $revision = $fila['funcion'];
-    $numRevision = $fila['unimed'];
-    $cantidad3 = $fila['cantidad'];
-    $fecha3 = $fila['fecha_creacion'];
-  }
 
-}
+
+
 ?>
 
   <main id="main" class="main">
@@ -73,22 +59,22 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
 
 
                 <div class="card-body">
-                  <h5 class="card-title"><?php echo $desarrollo; ?> <span>| Hoy</span></h5>
+                  <h5 class="card-title">ASISTENCIA<span>| total</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-cart"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>% <?php echo $cantidad1; ?></h6>
-                      <span class="text-success small pt-1 fw-bold"><?php echo $porcentaje;?></span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6><?= $asistencia['cantidad'];?></h6>
+                      <span class="text-success small pt-1 fw-bold"><?= $asistencia['nombre']?></span> <span class="text-muted small pt-2 ps-1"><?= date("d/m/Y");?></span>
+
+                          </div>
+                        </div>
+                      </div>
 
                     </div>
-                  </div>
-                </div>
-
-              </div>
-            </div><!-- End Sales Card -->
+                </div><!-- End Sales Card -->
 
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
@@ -108,22 +94,22 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title"><?php echo $ingresoDB; ?> <span>| Hoy</span></h5>
+                  <h5 class="card-title">REPORTES<span>| Total</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6><?php echo $cantidad2; ?></h6>
-                      <span class="text-success small pt-1 fw-bold"><?php echo $numIngreso; ?></span> <span class="text-muted small pt-2 ps-1">increase</span>
+                      <h6><?= $totalReportes['total'];?></h6>
+                      <span class="text-success small pt-1 fw-bold">CANTIDAD DE REPORTES<br><?= $totalReportes['enviados'];?></span> <span class="text-muted small pt-2 ps-1">REPORTES enviados</span>
 
                     </div>
                   </div>
                 </div>
 
-              </div>
-            </div><!-- End Revenue Card -->
+                </div>
+              </div><!-- End Revenue Card -->
 
             <!-- Customers Card -->
             <div class="col-xxl-4 col-xl-12">
@@ -144,15 +130,15 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
                 </div>
 
                 <div class="card-body">
-                  <h5 class="card-title"><?php echo $revision; ?><span>| Este mes</span></h5>
+                  <h5 class="card-title">FUNCIONES<span>| Total</span></h5>
 
                   <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                       <i class="bi bi-people"></i>
                     </div>
                     <div class="ps-3">
-                      <h6><?php echo $cantidad3; ?></h6>
-                      <span class="text-danger small pt-1 fw-bold"><?php echo $numRevision; ?></span> <span class="text-muted small pt-2 ps-1">decrease</span>
+                      <h6><?=$numeroFunciones['total']?> </h6>
+                      <span class="text-danger small pt-1 fw-bold">Funciones asigandas a <?= $asistencia['nombre']?></span> <span class="text-muted small pt-2 ps-1"><!--puede ir algo aqui--></span>
 
                     </div>
                   </div>
@@ -190,14 +176,14 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
                     document.addEventListener("DOMContentLoaded", () => {
                       new ApexCharts(document.querySelector("#reportsChart"), {
                         series: [{
-                          name: '<?php echo $desarrollo?>',
-                          data: [<?php echo $cantidad1?>, 40, 28, 51, 42, 82, 56],
+                          name: '',
+                          data: [40, 28, 51, 42, 82, 56],
                         }, {
-                          name: '<?php echo $ingresoDB?>',
-                          data: [<?php echo $cantidad2?>, 32, 45, 32, 34, 52, 41]
+                          name: '',
+                          data: [32, 45, 32, 34, 52, 41]
                         }, {
-                          name: '<?php echo $revision?>',
-                          data: [<?php echo $cantidad3?>, 11, 32, 18, 9, 24, 11]
+                          name: '',
+                          data: [11, 32, 18, 9, 24, 11]
                         }],
                         chart: {
                           height: 350,
@@ -295,57 +281,41 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Alcance de reportes mensuales <span>| This Month</span></h5>
+              <h5 class="card-title">Reportes enviados <span>| Metas</span></h5>
 
-              <div id="budgetChart" style="min-height: 400px;" class="echart"></div>
+              <div id="budgetChart" style="min-height: 400px;" class="echart"></div>          
 
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   var budgetChart = echarts.init(document.querySelector("#budgetChart")).setOption({
                     legend: {
-                      data: ['META o desarrolo asignado', '<?php echo $desarrollo; ?> actual']
+                      data: ['Metas', 'Actual']
                     },
                     radar: {
                       // shape: 'circle',
-                      indicator: [
-                        {
-                          name: 'Mas cosas...',
-                          max: 650
-                        },
-                        {
-                          name: '<?php echo $desarrollo; ?>',
-                          max: 100
-                        },
-                        {
-                          name: 'Mas cosas...',
-                          max: 300
-                        },
-                        {
-                          name: '<?php echo $ingresoDB; ?>',
-                          max: 500
-                        },
-                        {
-                          name: 'Mas cosas...',
-                          max: 500
-                        },
-                        {
-                          name: '<?php echo $revision; ?>',
-                          max: 500
-                        }
+                      indicator: [<?php 
+                          $valores = array();
+                          $metas = array();
+                          while($fila = $grafico2->fetch_assoc()) {
+                            $max = 100;
+                            array_push($valores, $fila['total']);
+                            array_push($metas, $fila['metas']);
+                            echo "{name: '" . $fila['asignado'] . "', mas: " . $max . "},";
+                          } 
+                        ?>
                       ]
                     },
                     series: [{
                       name: 'Budget vs spending',
                       type: 'radar',
                       data: [{
-                          value: [420, 30, 200, 350, 500, 180],
-                          name: 'META o desarrolo asignado'
+                          value: <?php echo json_encode($metas);?>,
+                          name: 'Metas'
                         },
                         {
-                          value: [500, <?php echo $cantidad1; ?>, 280, <?php echo $cantidad2; ?>, 420, <?php echo $cantidad3; ?>],
-                          name: '<?php echo $desarrollo; ?> actual'
+                          value: <?php echo json_encode($valores);?>,
+                          name: 'Actual'
                         }
-                        
                       ]
                     }]
                   });
@@ -371,10 +341,14 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
             </div>
 
             <div class="card-body pb-0">
-              <h5 class="card-title">Envios <span>| Today</span></h5>
+              <h5 class="card-title">Funciones asignadas <span>| Reportes</span></h5>
 
               <div id="trafficChart" style="min-height: 400px;" class="echart"></div>
-
+              <?php // aqui para sacar datos y colocarlos al grafico
+              //$grafico3 = $reportes->grafico3($_SESSION['personal']); ->cambiado de posicion arriba
+               //echo $grafico3['total'];
+               //echo $grafico3['asignado'];          
+              ?>
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   echarts.init(document.querySelector("#trafficChart")).setOption({
@@ -386,7 +360,7 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
                       left: 'center'
                     },
                     series: [{
-                      name: 'funciones diarias',
+                      name: 'Access From',
                       type: 'pie',
                       radius: ['40%', '70%'],
                       avoidLabelOverlap: false,
@@ -405,19 +379,16 @@ while($fila=$fun->fetch_array(MYSQLI_ASSOC)){
                         show: false
                       },
                       data: [
-                        {
-                          value: <?php echo $cantidad1; ?>,
-                          name: '<?php echo $desarrollo; ?>'
-                        },
-                        {
-                          value: <?php echo $cantidad2; ?>,
-                          name: '<?php echo $ingresoDB; ?>'
-                        },
-                        {
-                          value: <?php echo $cantidad3; ?>,
-                          name: '<?php echo $revision; ?>'
-                        }
-
+                        <?php 
+                          while($fila1 = $grafico3->fetch_assoc()){
+                          ?>
+                          {
+                              value: <?php echo $fila1["total"]; ?>,
+                              name: '<?php echo $fila1["asignado"]; ?>'
+                          },
+                          <?php 
+                          } 
+                          ?>
                       ]
                     }]
                   });

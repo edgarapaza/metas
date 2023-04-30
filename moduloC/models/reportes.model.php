@@ -58,7 +58,7 @@ class Reportes
 
 		return $response;
 	}
-
+	//funciones de ZETA para graficos y ver mis Estadisticas
 	public function verReportes(){
 		$sql = "SELECT CONCAT(p.nombre,' ',p.apellidos) AS nombre, SUM(r.cantidad) as cantidad 
 		FROM reportes as r 
@@ -94,6 +94,50 @@ class Reportes
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}
+	//pagina estadisticas
+	public function estadisticasAsistencia($idpersonal){
+		$sql = "SELECT p.nombre, COUNT(*) AS cantidad
+		FROM asistencia a
+		JOIN personal p ON a.idpersonal = p.id_personal
+		WHERE a.tipo = 'entrada' and a.idpersonal = $idpersonal
+		GROUP BY p.id_personal;";
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
+	}
+	//total de reportes y total de enviados por id
+	public function totalReportes($idpersonal){
+		$sql = "SELECT SUM(cantidad)AS total, COUNT(*) as enviados FROM reportes WHERE idpersonal = $idpersonal;";
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
+	}
+	//numero de funciones asignadas
+	public function numeroFunciones($idpersonal){
+		$sql = "SELECT COUNT(*) as total FROM funciones Where id_personal = $idpersonal;";
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
+	}
+	public function grafico2($idpersonal){
+		$sql = "SELECT sum(r.cantidad) as total,f.funcion as asignado, f.cantidad as metas FROM funciones f
+		JOIN reportes r ON f.idfunciones = r.idfunciones
+		Where id_personal = $idpersonal
+		GROUP BY asignado, metas;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+	//consulta para grafico de funciones y numero de reportes por funcionm segun id
+	public function grafico3($idpersonal){
+		$sql = "SELECT sum(r.cantidad) as total,f.funcion as asignado FROM funciones f
+		JOIN reportes r ON f.idfunciones = r.idfunciones
+		Where id_personal = $idpersonal
+		GROUP BY asignado;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+	
+
+		
+
+
 
 
 	
