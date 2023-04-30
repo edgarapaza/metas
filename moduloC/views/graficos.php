@@ -18,7 +18,7 @@
     <section class="section">
       <div class="row">
         
-      <div class="col-lg-6">
+        <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Total de Reportes Enviados</h5>
@@ -148,18 +148,21 @@
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Pie Chart</h5>
+              <h5 class="card-title">Funciones</h5>
 
               <!-- Pie Chart -->
               <div id="pieChart" style="min-height: 400px;" class="echart"></div>
-
+              <?php
+              //clase Reportes ya instanciado => reportes();
+              $funcionesDesignadas = $reportes->funcionesDesignadas();
+              ?>
               <script>
                 document.addEventListener("DOMContentLoaded", () => {
                   echarts.init(document.querySelector("#pieChart")).setOption({
                     title: {
-                      text: 'Referer of a Website',
-                      subtext: 'Fake Data',
-                      left: 'center'
+                      text: 'Todas las Funciones',
+                      subtext: 'Funciones',
+                      left: 'right'
                     },
                     tooltip: {
                       trigger: 'item'
@@ -172,26 +175,15 @@
                       name: 'Access From',
                       type: 'pie',
                       radius: '50%',
-                      data: [{
-                          value: 1048,
-                          name: 'Search Engine'
-                        },
+                      data: [
+                        <?php 
+                        while($fila3 = $funcionesDesignadas->fetch_assoc()){?>
                         {
-                          value: 735,
-                          name: 'Direct'
-                        },
-                        {
-                          value: 580,
-                          name: 'Email'
-                        },
-                        {
-                          value: 484,
-                          name: 'Union Ads'
-                        },
-                        {
-                          value: 300,
-                          name: 'Video Ads'
-                        }
+                          value: <?php echo $fila3["cantidad_total"]; ?>,
+                          name: '<?php echo $fila3["funcion"]; ?>'
+                        },//va la coma por que va estar creando nuevos valores y nombres y van tener que
+                        //separarse
+                      <?php } ?>  
                       ],
                       emphasis: {
                         itemStyle: {
@@ -280,11 +272,8 @@
             </div>
           </div>
         </div>
-
-
-
 <!--aqui acaba los graficos, su div y dection para cerrar-->
-        </div>
+      </div>
     </section>
 
 

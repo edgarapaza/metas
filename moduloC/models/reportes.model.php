@@ -86,6 +86,16 @@ class Reportes
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}
+	public function funcionesDesignadas(){
+		$sql = "SELECT f.funcion, SUM(r.cantidad) as cantidad_total
+		FROM funciones f
+		JOIN reportes r ON f.idfunciones = r.idfunciones
+		GROUP BY f.funcion;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+
+
 	
 
 
