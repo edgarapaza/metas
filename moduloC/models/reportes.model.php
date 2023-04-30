@@ -77,6 +77,15 @@ class Reportes
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}
+
+	public function progreso(){
+		$sql = "SELECT DATE(fecha) AS dia, SUM(cantidad) AS cantidad_reportes
+		FROM reportes
+		GROUP BY dia
+		ORDER BY dia ASC;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
 	
 
 
