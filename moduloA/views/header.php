@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['admin']))
+if(isset($_SESSION['personal']))
 {
   require "../models/personal.model.php";
   $personal = new Personal();
@@ -51,6 +51,7 @@ if(isset($_SESSION['admin']))
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
+
 <body>
 
   <!-- ======= Header ======= -->
