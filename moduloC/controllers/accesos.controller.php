@@ -98,7 +98,7 @@ if($datos['chk_usu']== 1)
     }
 }else{
     //echo "No activo";
-    header("Location: ../index.php?msg=No Activo");
+    header("Location: ../index.html?msg=No Activo");
 }
 
 

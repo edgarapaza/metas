@@ -11,7 +11,7 @@ class Personal
         return $this->conn;
 	}
 
-	public function Guardar($nombre,$apellidos,$sexo,$telefono,$fecha_nac,$email,$foto, $dni )
+		public function Guardar($nombre,$apellidos,$sexo,$telefono,$fecha_nac,$email,$foto, $dni )
 	{
 		$fechaActual = date('Y-m-d H:i:s');
 		$foto="./images/usuario.png";
@@ -40,7 +40,7 @@ class Personal
 		return $response;
 	}
 	public function MostrarPersonalAccion($idpersonal)
-	{
+	{	
 		$sql = "SELECT nombre, apellidos FROM personal WHERE id_personal = $idpersonal";
 		$response = $this->conn->ConsultaArray($sql);
 		return $response;

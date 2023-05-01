@@ -62,10 +62,23 @@ class ValidarUsuario
 		}
 
 		//variable $nivel recibe 1,2 o 3. funcion cambio de nivel no devuelve nada
-		function uplevel($nivel,$idpersonal)
+		function Uplevel($nivel,$idpersonal)
 		{
 			$sql = "UPDATE `avancemetas`.`login` SET `niv_usu` = $nivel WHERE `id_personal` = $idpersonal;";
 			$this->conn->Consultasin($sql);
+		}
+
+		function RegistrarSalida($idpersonal,$fecha,$horaEntrada,$tipoS,$horasalida,$tiempoUso)
+		{
+			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$horaEntrada','$tipoS','$horasalida','$tiempoUso');";
+			$this->conn->ConsultaSin($sql);
+		}
+		
+		function Verificar($idpersonal,$fecha,$tipo)
+		{
+			$sql = "SELECT hora FROM asistencia WHERE idpersonal = $idpersonal AND fecha = '$fecha' AND tipo = '$tipo';";
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
 		}
 
 	}

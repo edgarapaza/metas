@@ -36,6 +36,9 @@
 			$data = $this->mysqli->query($sql);
 			return $data;
 		}	
+
+			
+
 	}
 
 

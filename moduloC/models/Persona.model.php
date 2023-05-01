@@ -42,11 +42,13 @@ class Persona
 
 		function MostrarPersona($idpersonal)
 		{
-			$sql = "SELECT CONCAT(nombre,' ', apellidos) AS personal FROM personal WHERE id_personal = $idpersonal";
+			$sql = "SELECT CONCAT(nombre,' ', apellidos) AS personal, nombre, apellidos, sexo, telefono,fecha_nac, DNI, foto, email FROM personal WHERE id_personal = $idpersonal;";
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
+    	function UpdatePersona($telefono, $fecha_nac, $email, $ruta, $direccion, $idpersonal)
+			{
+				$sql = "UPDATE personal SET telefono = '$telefono', fecha_nac = '$fecha_nac', email = '$email', foto = '$ruta', direccion = '$direccion' WHERE (id_personal = '$idpersonal');";
+				$this->conn->ConsultaSin($sql);
+			}
 	}
-
-
-?>
