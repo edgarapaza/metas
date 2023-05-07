@@ -133,7 +133,31 @@ class Reportes
 		$data = $this->conn->ConsultaCon($sql);
 		return $data;
 	}
+	//consulta para grafico reports
+	public function grafico1($idpersonal){
+		$sql = "SELECT r.cantidad, DATE(r.fecha) as fecha, f.funcion FROM reportes r
+		JOIN funciones f ON f.idfunciones = r.idfunciones WHERE r.idpersonal = $idpersonal;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
 	
+	public function grafico12($idpersonal){
+		$sql = "SELECT SUM(r.cantidad) as total, DATE(r.fecha) as fecha, f.funcion
+		FROM reportes r
+		JOIN funciones f ON f.idfunciones = r.idfunciones 
+		WHERE r.idpersonal = $idpersonal 
+		GROUP BY DATE(r.fecha), f.funcion;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+
+	public function funciones($idpersonal){
+		$sql = "SELECT idfunciones FROM funciones WHERE id_personal = $idpersonal;";
+		$data = $this->conn->ConsultaCon($sql);
+		return $data;
+	}
+
+
 
 		
 

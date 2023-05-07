@@ -8,8 +8,13 @@ $reportes = new Reportes();
 $asistencia = $reportes->estadisticasAsistencia($_SESSION['personal']);
 $totalReportes = $reportes->totalReportes($_SESSION['personal']);
 $numeroFunciones = $reportes->numeroFunciones($_SESSION['personal']);
+
+$grafico1 = $reportes->grafico1($_SESSION['personal']);
 $grafico2 = $reportes->grafico2($_SESSION['personal']);
 $grafico3 = $reportes->grafico3($_SESSION['personal']);
+//prueba
+$grafico = $reportes->grafico12($_SESSION['personal']);
+
 
 
 
@@ -172,58 +177,80 @@ $grafico3 = $reportes->grafico3($_SESSION['personal']);
                   <!-- Line Chart -->
                   <div id="reportsChart"></div>
 
-                  <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: '',
-                          data: [40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: '',
-                          data: [32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: '',
-                          data: [11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 300]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
+                  <?php 
+                    $data = array();
+                    $fecha = array();
+                    
+                    while($row = $grafico->fetch_array(MYSQLI_ASSOC)) {
+                        $funcion = $row["funcion"];
+                        $total = $row["total"];
+                        array_push($fecha, $row['fecha']);
+                        //$fecha = strtotime($row["fecha"]) * 1000; // Convertir fecha a milisegundos
+                    
+                        // Agregar los datos al objeto de datos
+                        if (array_key_exists($funcion, $data)) {
+                            array_push($data[$funcion]["data"], array($total));
+                        } else {
+                            $data[$funcion] = array(
+                                "name" => $funcion,
+                                "data" => array(array($total))
+                            );
                         }
-                      }).render();
-                    });
-                  </script>
+                    }
+                    
+                    // Convertir el objeto de datos a un array
+                    $series = array();
+                    foreach($data as $value) {
+                        array_push($series, $value);
+                    }
+                    
+                    //echo json_encode($series);
+                    //echo json_encode($fecha);
+                      ?>
+                  
+                  <script>
+                      document.addEventListener("DOMContentLoaded", () => {
+                        new ApexCharts(document.querySelector("#reportsChart"), {
+                          series: <?php echo json_encode($series); ?>,
+                          chart: {
+                            height: 350,
+                            type: 'area',
+                            toolbar: {
+                              show: false
+                            },
+                          },
+                          markers: {
+                            size: 4
+                          },
+                          colors: ['#4154f1', '#2eca6a', '#ff771d'],
+                          fill: {
+                            type: "gradient",
+                            gradient: {
+                              shadeIntensity: 1,
+                              opacityFrom: 0.3,
+                              opacityTo: 0.4,
+                              stops: [0, 90, 300]
+                            }
+                          },
+                          dataLabels: {
+                            enabled: false
+                          },
+                          stroke: {
+                            curve: 'smooth',
+                            width: 2
+                          },
+                          xaxis: {
+                            type: 'datetime',
+                            categories:<?php echo json_encode($fecha);?>
+                          },
+                          tooltip: {
+                            x: {
+                              format: 'dd/MM/yy'
+                            },
+                          }
+                        }).render();
+                      });
+                    </script>
                   <!-- End Line Chart -->
 
                 </div>
