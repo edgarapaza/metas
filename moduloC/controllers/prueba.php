@@ -13,7 +13,7 @@ $data = array();
 $fecha = array();
 
 while($row = $grafico->fetch_array(MYSQLI_ASSOC)) {
-    $funcion = $row["funcion"];
+    $funcion = $row["funcion"]; 
     $total = $row["total"];
     array_push($fecha, $row['fecha']);
     //$fecha = strtotime($row["fecha"]) * 1000; // Convertir fecha a milisegundos
@@ -48,35 +48,35 @@ echo json_encode($fecha);
 
 
 //
-$fecha1 = array();
-$datos = array();
-$nombres = array();
-$valores = array();
-$metas = array();
-while($fila2 = $grafico->fetch_array(MYSQLI_ASSOC)) {
-    $max = 100;
-    array_push($valores, $fila2['funcion']);
-    array_push($metas, $fila2['total']);
-    echo "{name: '" . $fila2['funcion'] . "', mas: " . $max . "},";
-} 
-echo json_encode($valores, JSON_PRETTY_PRINT);
-echo json_encode($metas, JSON_PRETTY_PRINT);
+//$fecha1 = array();
+//$datos = array();
+//$nombres = array();
+//$valores = array();
+//$metas = array();
+//while($fila2 = $grafico->fetch_array(MYSQLI_ASSOC)) {
+//    $max = 100;
+//    array_push($valores, $fila2['funcion']);  
+//    array_push($metas, $fila2['total']);
+//    echo "{name: '" . $fila2['funcion'] . "', mas: " . $max . "},";
+//} 
+//echo json_encode($valores, JSON_PRETTY_PRINT);
+//echo json_encode($metas, JSON_PRETTY_PRINT);
 
 
-$fecha1 = array();
-$datos = array();
-$cantidad = array();
-while ($fila2 = $grafico->fetch_array(MYSQLI_ASSOC)) {
-    $fecha = date("Y/m/d", strtotime($fila2['fecha'])); // formatea la fecha
-    array_push($fecha1, $fecha);
-    array_push($datos, $fila2['cantidad']);        
-} 
+//$fecha1 = array();
+//$datos = array();
+//$cantidad = array();
+//while ($fila2 = $grafico->fetch_array(MYSQLI_ASSOC)) {
+//    $fecha = date("Y/m/d", strtotime($fila2['fecha'])); // formatea la fecha
+//    array_push($fecha1, $fecha);
+//    array_push($datos, $fila2['cantidad']);        
+//} 
 
-foreach ($datos as $key => $dato) {
-    echo "{name:jersson ', data: " . json_encode(array($dato)) . "},";
-    $cantidad = json_encode(array($dato));
-    echo $cantidad;
-}
+//foreach ($datos as $key => $dato) {
+//    echo "{name:jersson ', data: " . json_encode(array($dato)) . "},";
+//    $cantidad = json_encode(array($dato));
+//    echo $cantidad;
+//}
 
 
 
