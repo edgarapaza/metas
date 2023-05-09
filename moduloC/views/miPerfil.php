@@ -1,5 +1,5 @@
 <?php include('header.php'); ?>
-<?php include_once("sidebar.php"); ?>
+
 
   <main id="main" class="main">
 
