@@ -49,3 +49,4 @@ $direccion = $_POST['direccion'];
 
 $persona->UpdatePersona($telefono, $fecha_nac, $email, $ruta, $direccion, $idpersonal);
 ?>
+
