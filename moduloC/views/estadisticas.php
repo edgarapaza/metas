@@ -1,6 +1,6 @@
 <?php 
-include_once("header.php");
-require "../models/reportes.model.php";
+include_once "header.php";
+require_once "../models/reportes.model.php";
 //$_SESSION['personal'] -> esto contiene idpersonal en variable global
 
 $_SESSION['inicio'];
@@ -14,9 +14,6 @@ $grafico2 = $reportes->grafico2($_SESSION['personal']);
 $grafico3 = $reportes->grafico3($_SESSION['personal']);
 //prueba
 $grafico = $reportes->grafico12($_SESSION['personal']);
-
-
-
 
 
 
@@ -407,7 +404,7 @@ $grafico = $reportes->grafico12($_SESSION['personal']);
                       },
                       data: [
                         <?php 
-                          while($fila1 = $grafico3->fetch_assoc()){
+                          while($fila1 = $grafico3->fetch_array(MYSQLI_ASSOC)){
                           ?>
                           {
                               value: <?php echo $fila1["total"]; ?>,
