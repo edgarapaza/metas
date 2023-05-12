@@ -1,7 +1,6 @@
 <?php 
 session_start();
-//trabajar aqui para que funcione las actualizaciones de activado o desactivado, una vez terminado preguntar como mostrar por pantalla
-//
+//trabajar aqui para que funcione las actualizaciones de activado o desactivado
 require "../models/ValidarUsuario.php";
 //instancia de la clase-consulta
 

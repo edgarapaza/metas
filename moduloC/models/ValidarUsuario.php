@@ -81,5 +81,18 @@ class ValidarUsuario
 			return $data;
 		}
 
+		function verificarPassword($id, $password)
+		{
+			$sql = "SELECT psw_usu FROM login WHERE id_personal = '$id' AND psw_usu = '$password' ;";
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
+		}
+		function updatePassword($id, $newpassword, $password)
+		{
+			$sql = "UPDATE login SET psw_usu = '$newpassword' WHERE id_personal = '$id' AND psw_usu = '$password';";
+			$data = $this->conn->ConsultaSin($sql);
+			
+		}
+
 	}
  ?>

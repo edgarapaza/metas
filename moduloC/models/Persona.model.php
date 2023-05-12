@@ -42,7 +42,7 @@ class Persona
 
 		function MostrarPersona($idpersonal)
 		{
-			$sql = "SELECT CONCAT(nombre,' ', apellidos) AS personal, nombre, apellidos, sexo, telefono,fecha_nac, DNI, foto, email FROM personal WHERE id_personal = $idpersonal;";
+			$sql = "SELECT CONCAT(nombre,' ', apellidos) AS personal, nombre, apellidos, sexo, telefono,fecha_nac, DNI, foto, email, direccion FROM personal WHERE id_personal = $idpersonal;";
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
