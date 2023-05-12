@@ -1,5 +1,5 @@
 <?php include('header.php'); ?>
-<?php include_once("sidebar.php"); ?>
+
 
   <main id="main" class="main">
 
@@ -21,7 +21,8 @@
           <div class="card">
             <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-              <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+              <img src="<?php echo $data['foto'];?>" alt="Profile" class="rounded-circle">
+
 
               <h2><?php echo $data['personal'];?></h2>
               <h3>Desarrollador Web</h3>
@@ -109,7 +110,7 @@
                 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                   <!-- Formulario de edición de perfil -->
-                  <form method="post" action="../controllers/updatePerfil.controller.php">
+                  <form method="post" action="../controllers/updatePerfil.controller.php" enctype="multipart/form-data"/>
 
                     <input type="hidden" name="idpersonal" value="<?php echo $_SESSION['personal'];?>">
 
@@ -159,7 +160,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label">Foto:</label>
                         <div class="col-sm-6">
-                            <input type="file" class="form-control" id="foto" name="foto">
+                            <input type="file" class="form-control" id="mifoto" name="mifoto">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -176,7 +177,7 @@
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                      <button type="submit" class="btn btn-primary" name="btn-agregar" id="btn-agregar">Guardar cambios</button>
                     </div>
                   </form><!-- Finalizar formulario de edición de perfil -->
 

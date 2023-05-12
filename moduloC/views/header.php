@@ -22,7 +22,7 @@ $dato = $funciones->MostrarReporte($_SESSION['personal']);
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
+<head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -57,9 +57,9 @@ $dato = $funciones->MostrarReporte($_SESSION['personal']);
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
-    </head>
+</head>
 
-    <body>
+<body>
 
     <!-- ======= Header ======= -->
     <header id="header" class="header fixed-top d-flex align-items-center">
@@ -233,7 +233,7 @@ $dato = $funciones->MostrarReporte($_SESSION['personal']);
             <li class="nav-item dropdown pe-3">
 
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                <img src="<?php echo $data['foto'];?>" alt="Profile" class="rounded-circle">
                 <span class="d-none d-md-block dropdown-toggle ps-2"><?php echo $data['personal'];?></span>
             </a><!-- End Profile Iamge Icon -->
 
