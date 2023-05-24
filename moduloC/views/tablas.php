@@ -4,6 +4,9 @@
 
     <div class="pagetitle">
       <h1>Data Tables</h1>
+
+      <input type="date" name="fecInicio" id="fecInicio">
+      
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
