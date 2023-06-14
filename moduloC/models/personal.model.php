@@ -11,12 +11,15 @@ class Personal
         return $this->conn;
 	}
 
-		public function Guardar($nombre,$apellidos,$sexo,$telefono,$fecha_nac,$email,$foto, $dni )
+	public function Guardar($nombre,$apellidos,$sexo,$telefono,$fecha_nac,$email,$foto, $dni, $fechaActual,$direccion)
 	{
-		$fechaActual = date('Y-m-d H:i:s');
-		$foto="./images/usuario.png";
+		$sql = "INSERT INTO personal(id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI,f_creacion,direccion)VALUES (null ,'$nombre','$apellidos','$sexo','$telefono','$fecha_nac','$email','$foto','$dni','$fechaActual','$direccion')";
+		$this->conn->ConsultaSin($sql);
+	}
 
-		$sql = "INSERT INTO personal(id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,DNI,f_creacion)VALUES (null ,'$nombre','$apellidos','$sexo','$telefono','$fecha_nac','$email','$foto','$dni','$fechaActual')";
+	public function GuardarUsuario($idpersonal,$usuario,$password,$nivel,$chek)
+	{
+		$sql = "INSERT INTO login VALUES (null, '$idpersonal','$usuario','$password','$nivel','$chek')";
 		$this->conn->ConsultaSin($sql);
 	}
 
@@ -31,6 +34,12 @@ class Personal
 		$sql = "SELECT id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,f_creacion, DNI FROM personal";
 		$response = $this->conn->ConsultaCon($sql);
 		return $response;
+	}
+	public function ConsultarPersonal($nombre,$apellido,$dni)
+	{
+		$sql = "SELECT id_personal,nombre,apellidos,sexo,telefono,fecha_nac,email,foto,f_creacion, DNI FROM personal WHERE nombre = '$nombre' AND apellidos = '$apellido' AND DNI = '$dni';";
+		$data = $this->conn->ConsultaArray($sql);
+		return $data;
 	}
 
 	public function MostrarPersonal($idpersonal)

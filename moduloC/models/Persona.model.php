@@ -1,4 +1,3 @@
-
 <?php
 require "Conexion.php";
 
@@ -53,4 +52,11 @@ class Persona
 
 				$this->conn->ConsultaSin($sql);
 			}
+		function MostrarUsuario($idpersonal)
+		{
+			$sql = "SELECT nom_usu FROM login WHERE id_personal = $idpersonal;";
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
+		}
 	}
+	

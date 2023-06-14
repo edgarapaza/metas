@@ -1,5 +1,8 @@
 <?php include('header.php'); ?>
+<?php 
+$dataLogin = $persona->MostrarUsuario($_SESSION['personal']);
 
+?>
 
   <main id="main" class="main">
 
@@ -231,7 +234,14 @@
 
                   <!-- Change Password Form -->
                   <form method="post" action="../controllers/updatePassword.controller.php" id = "my-form">
-
+                    
+                    <div class="row mb-3">
+                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Nuevo Usuario</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="usuario" type="text" class="form-control" id="currentPassword" value = "<?= $dataLogin['nom_usu']?>">
+                      </div>
+                    </div>
+                    
                     <div class="row mb-3">
                       <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Contraseña actual</label>
                       <div class="col-md-8 col-lg-9">

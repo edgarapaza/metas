@@ -342,6 +342,13 @@ $dato = $funciones->MostrarReporte($_SESSION['personal']);
                 </a>
             </li>
             </ul>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+            <li>
+                <a href="newPersonal.view.php">
+                <i class="bi bi-circle"></i><span>Registro nuevo Personal</span>
+                </a>
+            </li>
+            </ul>
         </li><!-- End Forms Nav -->
 
         <li class="nav-item">

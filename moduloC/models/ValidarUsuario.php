@@ -12,24 +12,26 @@ class ValidarUsuario
 			return $this->conn;
 			
 		}
-
-		function Validar($user, $pass)
+		function Validar($user)
 		{
-			$sql = "SELECT id_personal, niv_usu, chk_usu FROM login WHERE nom_usu = '$user' AND psw_usu = '$pass'";
+			$sql = "SELECT id_personal, niv_usu, chk_usu, psw_usu FROM login WHERE nom_usu = '$user';";
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
-
 		function VerificarAsistencia($idpersonal, $fecha)
 		{
 			$sql = "SELECT count(*) AS total FROM asistencia WHERE idpersonal = $idpersonal AND fecha = '$fecha';";
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
-
 		function RegistrarAsistencia($idpersonal, $fecha, $hora, $tipo)
 		{
 			$sql = "INSERT INTO asistencia VALUES (null,'$idpersonal','$fecha','$hora','$tipo',null,null);";
+			$this->conn->ConsultaSin($sql);
+		}
+		function updateAsistencia($idpersonal, $hora, $tipo)
+		{
+			$sql = "UPDATE asistencia SET tipo = '$tipo', hora = '$hora' WHERE idpersonal = $idpersonal;";
 			$this->conn->ConsultaSin($sql);
 		}
 
@@ -81,17 +83,24 @@ class ValidarUsuario
 			return $data;
 		}
 
-		function verificarPassword($id, $password)
+		function verificarPassword($id)
 		{
-			$sql = "SELECT psw_usu FROM login WHERE id_personal = '$id' AND psw_usu = '$password' ;";
+			$sql = "SELECT psw_usu FROM login WHERE id_personal = '$id';";
 			$data = $this->conn->ConsultaArray($sql);
 			return $data;
 		}
-		function updatePassword($id, $newpassword, $password)
+		function updatePassword($id, $newpassword)
 		{
-			$sql = "UPDATE login SET psw_usu = '$newpassword' WHERE id_personal = '$id' AND psw_usu = '$password';";
+			$sql = "UPDATE login SET psw_usu = '$newpassword' WHERE id_personal = '$id';";
 			$data = $this->conn->ConsultaSin($sql);
 			
+		}
+		//ver el primer ingreso para cambiar de contrase;a
+		function VerificarPrimer($idpersonal)
+		{
+			$sql = "SELECT count(*) AS primer FROM asistencia WHERE idpersonal = $idpersonal;";
+			$data = $this->conn->ConsultaArray($sql);
+			return $data;
 		}
 
 	}
